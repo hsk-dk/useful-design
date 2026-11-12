@@ -13,6 +13,8 @@ En app er migreret, når den bruger `useful.css` (eller tokens) uden enkeltståe
 - [ ] Baggrundsbillede: hentes i dag fra `auth.useful.dk`; server det lokalt.
 - [ ] Diagrammer (Recharts): serie 1 i `--data-1`, ændringer med `.u-delta`.
 - [ ] Tal i nøgletal og tabeller: `.u-num`.
+- [ ] Status- og kategorimærker: `u-chip` med varianter (D20).
+- [ ] Alle knapper mindst 44 px (D21): ingen knapper på 11 til 13 px.
 
 ## SparkSpend (PHP, Bootstrap 5.3, `includes/style.css`)
 

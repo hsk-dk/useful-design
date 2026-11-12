@@ -25,6 +25,9 @@ Hver beslutning har en begrundelse og en konsekvens for de eksisterende apps. Se
 | D17 | **Baggrundsfoto serveres fra egen app som fast lag,** aldrig hentet fra Authentik. | Hot-link kan fejle (iOS) og binder appen til én vært. `background-attachment: fixed` virker ikke på iOS Safari. | Running og clean skal flyttes. |
 | D18 | **Kun lyst udtryk.** | Mørk tilstand findes kun på Authentik-login og er ikke godkendt til apps. | Ingen ændring. |
 | D19 | **Dansk brugerflade, du-form, korte aktive sætninger.** Formater: `1.248,5 km`, `5:31 /km`, 24-timers ur, ugen starter mandag, ISO-ugenumre. | Fælles tone og ens formater gør appsene troværdige. | Fælles ordliste udvides i takt med behov. |
+| D20 | **Status og kategorier er tonede mærker (`u-chip`)** med seks varianter: `good`, `warn`, `bad`, `neutral` (standard), `info` og `optional`. Teksten er betydningen, og farven understøtter den. Tekst har mindst 4,5 til 1 på sin egen tone. | Running havde otte hårdkodede farvesæt til mærker (grøn, gul, rød, grå, indigo, violet, blå). Faste varianter gør, at samme status ser ens ud i alle apps. Indigo og blå er slået sammen til `info`. | Running: `StatusBadge` bruger `u-chip`. |
+| D21 | **Alle knapper er mindst 44 px høje, også i tabeller og dialoger.** Der er ingen kompakt variant. | En knap på 24 px består WCAG 2.2 AA, men er svær at ramme på en telefon. Rækker i tabeller bliver lidt højere, men kan bruges. | Running: knapper på 11 til 13 px erstattes af `u-btn`. |
+| D22 | **`--text-warn` (`#92400E`) er et token** til tekst om advarsler og forkortede løb (7,09 til 1). | Fremgik kun i Running som en lokal variabel. | Running bruger tokenet. |
 
 ## Det der ikke er besluttet
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+Ny mindre version. Ingen brydende ændringer.
+
+- Nye tokens: `--text-warn` og seks sæt mærkefarver (`--chip-{good,warn,bad,neutral,info,optional}-{bg,border,text}`).
+- Ny komponent: `u-chip` med varianterne `--good`, `--warn`, `--bad`, `--info` og `--optional` (neutral er standard).
+- Kontrastkontrollen tester nu også mærkerne og `--text-warn`.
+- Nye beslutninger D20 (mærker), D21 (alle knapper mindst 44 px) og D22 (`--text-warn`).
+
 ## 0.1.0 (udkast)
 
 Første samling af Useful-designsystemet.

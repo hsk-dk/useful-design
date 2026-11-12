@@ -53,10 +53,17 @@ const checks = [
 	['on-error', 'error', TEXT, 'Text on error fill'],
 	['text-bad', 'surface', TEXT, 'Bad figures as text'],
 	['text-good', 'surface', TEXT, 'Good figures as text'],
+	['text-warn', 'surface', TEXT, 'Warning figures as text'],
 	['data-1', 'surface', TEXT, 'Data series 1 as text'],
 	['data-2', 'surface', TEXT, 'Data series 2 as text'],
 	['data-3', 'surface', TEXT, 'Data series 3 as text'],
 	['data-4', 'surface', TEXT, 'Data series 4 as text'],
+	['chip-good-text', 'chip-good-bg', TEXT, 'Chip text on its tint (good)'],
+	['chip-warn-text', 'chip-warn-bg', TEXT, 'Chip text on its tint (warn)'],
+	['chip-bad-text', 'chip-bad-bg', TEXT, 'Chip text on its tint (bad)'],
+	['chip-neutral-text', 'chip-neutral-bg', TEXT, 'Chip text on its tint (neutral)'],
+	['chip-info-text', 'chip-info-bg', TEXT, 'Chip text on its tint (info)'],
+	['chip-optional-text', 'chip-optional-bg', TEXT, 'Chip text on its tint (optional)'],
 	['neutral', 'surface', UI, 'Neutral status shape'],
 	// Success and warning fills are decoration next to a mandatory text label ("Online", "Ustabil") and a distinct
 	// shape, so WCAG 1.4.11 does not require 3:1 for them. The floor below only catches a fill that nearly vanishes.

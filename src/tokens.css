@@ -73,9 +73,30 @@
 	--color-on-error: #ffffff;
 	--color-neutral: #6b7280;
 
-	/* Text colours for good/bad figures (decided). The bright fills above fail as text. */
+	/* Text colours for good/warning/bad figures (decided). The bright fills above fail as text. */
 	--text-good: #15803d; /* 5.02:1 on white */
+	--text-warn: #92400e; /* 7.09:1 on white; "shortened", "warning" */
 	--text-bad: #b52b27; /* 6.29:1 on white */
+
+	/* Chips (decided, D20): tinted pills for status and categories. Text passes 4.5:1 on its own tint. */
+	--chip-good-bg: #ecfdf5;
+	--chip-good-border: #bbf7d0;
+	--chip-good-text: #166534;
+	--chip-warn-bg: #fffbeb;
+	--chip-warn-border: #fde68a;
+	--chip-warn-text: #92400e;
+	--chip-bad-bg: #fef2f2;
+	--chip-bad-border: #fecaca;
+	--chip-bad-text: #991b1b;
+	--chip-neutral-bg: #f9fafb;
+	--chip-neutral-border: #d1d5db;
+	--chip-neutral-text: #425061;
+	--chip-info-bg: #eff6ff;
+	--chip-info-border: #bfdbfe;
+	--chip-info-text: #1d4ed8;
+	--chip-optional-bg: #faf5ff;
+	--chip-optional-border: #e9d5ff;
+	--chip-optional-text: #6d28d9;
 
 	/* Data colours (decided). Series 1 is always blue. All pass 4.5:1 on white and may carry text. */
 	--data-1: #446ea8;
