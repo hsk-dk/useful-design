@@ -1,0 +1,12 @@
+{
+  "name": "useful-design",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Useful design system: tokens, framework-neutral CSS components and the style guide",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/check-contrast.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

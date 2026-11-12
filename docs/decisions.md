@@ -1,0 +1,33 @@
+# Designbeslutninger
+
+Beslutningerne er truffet ud fra senior UX-vurdering af de fire apps (Running, Homelab-portalen, SparkSpend, clean.useful.dk), så udtrykket bliver ensartet. Princippet fra dashboardets designsystem gælder: **tilgængelighed vinder over eksakt efterligning.** Alle kontrastværdier er målt med `scripts/check-contrast.mjs`.
+
+Hver beslutning har en begrundelse og en konsekvens for de eksisterende apps. Se `docs/migration.md` for tjeklisten pr. app.
+
+| # | Beslutning | Begrundelse | Konsekvens |
+|---|---|---|---|
+| D1 | **Én appheader til alle apps:** dyb blå gradient `#3A5F90 → #446EA8`, 64 px, hvid tekst, logo/apptitel til venstre, understregede faner, brugermenu til højre. Hvid header bruges kun på login og offentlige sider. | Headeren er det første, man ser. Når den er ens, mærker man, at man er i samme hus, selv om appen skifter (konsistens og genkendelighed). Dybere blå end Running i dag, fordi hvid tekst på `#5D8FD9 → #6EA0EB` kun er 3,28 og 2,66 til 1. | Running: ny gradient. SparkSpend: marine `#1A2635` → dyb blå. Portal: hvid → dyb blå ved næste redesign. |
+| D2 | **Primær knap er flad `#446EA8`**, hover `#3A5F90`, hvid tekst, 6 px, mindst 44 px høj. Højst én primær knap pr. område. Sekundær er hvid med kontrolkant. Destruktiv er `#B52B27`. Mærkegradienten må ikke ligge bag tekst. | Gradienten `#9DC0FF → #446EA8` giver hvid tekst mellem 1,8 og 5,2 til 1. SparkSpends flade `#6BA3FF` giver 2,53. Én tydelig primær handling gør, at brugeren ikke skal vælge (Hicks lov). | Running og SparkSpend skifter knapstil. |
+| D3 | **Dæmpet tekst er `#425061`.** Ingen andre grå til tekst. | `#64748B` på `#F1F5F9` er 4,34 til 1. `#425061` er 5,25 til 1 selv direkte på baggrunden og er allerede et delt brandtoken. | Running: `#64748B`, `#475569` og `#6B7280` som tekst flyttes. |
+| D4 | **Handlingsblå: `#446EA8` til tekst, ikoner og knapper. `#6BA3FF` kun til udfyldning og blød glød.** `#3B82F6`, `#3F74C4` og `#5D8FD9` bruges ikke som tekst. | Fem forskellige blå i dag giver uro. `#6BA3FF` er 2,53 til 1 på hvid og består ikke som tekst. | Rydning i hver app. |
+| D5 | **Fokus:** 2 px outline i `#446EA8` med blød glød i `#6BA3FF`. | Glød alene er 2,53 til 1 og er ikke nok som fokusindikator. Outline er 5,2 til 1. | `--color-focus-outline` er nyt. |
+| D6 | **Kort: hvid, uigennemsigtig, 14 px hjørne, kortkant.** Statiske kort har kun en let skygge. **Skygge betyder "kan klikkes":** kun interaktive kort får `--shadow-small`. | Skygge som ledetråd (affordance) hjælper brugeren med at se, hvad der kan trykkes på. Tunge skygger på alt flader hierarkiet ud. | Running: 10 px → 14 px. Statiske kort mister tung skygge. |
+| D7 | **Panel: gennemsigtig `.86` med let sløring kun som sidens ydre ramme.** Indhold ligger på uigennemsigtige kort. Tekst direkte på panelet er altid `--color-text` eller `--color-text-muted`. | Giver Useful-udtrykket med fotobaggrunden og samtidig sikre kontraster. Portalens regel "ingen glaseffekt" gælder indhold, ikke rammen. | Ingen ændring i Running. |
+| D8 | **Tre indholdsbredder:** 800 px (enkeltværktøj), 960 px (standard), 1280 px (datatætte sider). | Dashboardets token (960) og inventar (800) var uenige, og Running bruger 1280. En fast skala er bedre end tilfældige tal. | Hver app vælger bredde efter indholdet. |
+| D9 | **Navigation:** primære destinationer i headeren som understregede links, højst fem. Visninger inden for en side som fyldte faner. På telefon flyttes primær navigation til en bundtabbar. | Fem er grænsen for, hvad man overskuer (Millers lov). Bunden på telefon er inden for tommelfingerens rækkevidde. | Dashboardets faner bliver sekundære faner. |
+| D10 | **Typografi:** systemskrift, skala 12/14/16/20/24/32/40 px, vægt 400/500/600/700/800. Overskrifter 800 med bogstavafstand −0,025 em. Tal har lige brede cifre. | Én skala giver rytme. Systemskrift er allerede fælles og kræver ingen licens. | Running: tal i tabeller og nøgletal får `tabular-nums`. |
+| D11 | **Status er altid farve, form og tekst.** Faste danske etiketter: Online, Offline, Ustabil, Vedligehold, Ukendt, Forældet. | Mindst 8 % af mænd har nedsat farvesyn. Fælles ord gør, at status læses ens på tværs af apps. | Tekstetiketten er obligatorisk. |
+| D12 | **Datafarver:** blå `#446EA8`, grøn-blå `#0B7A70`, violet `#6D52AB`, rav `#A35A00`. Første serie er altid blå. Alle kan stå som tekst (mindst 5,2 til 1). | Når "mit løb" altid er blåt, genkender man det på tværs af apps. | Running og SparkSpend bruger dem i diagrammer. |
+| D13 | **Ændringer farves efter, om "op" er godt for målet,** med `#15803D` (godt) og `#B52B27` (dårligt) som tekst. Pil og tekst står altid ved siden af. | SparkSpend farver stigning rød fordi udgifter stiger. For distance er en stigning god. Farven skal følge betydningen, ikke retningen. | SparkSpends `#EF4444`/`#22C55E` som tekst (3,76 og 2,28 til 1) udgår. |
+| D14 | **Ikoner er indbyggede SVG i `currentColor`, 24 px.** Ingen emoji som ikon. | `currentColor` følger tokens og kontrast. Emoji ser forskellige ud på hver platform. | Nye komponenter. |
+| D15 | **Tomme, indlæsende, fejl- og forældede tilstande er altid designet.** Tom tilstand siger, hvad der sker næste gang. Fejl viser aldrig interne detaljer. | Det er de tilstande, brugeren oftest møder, når noget er galt. | Skabeloner i `u-empty`, `u-skeleton`, `u-notice`. |
+| D16 | **Bevægelse: 150–250 ms.** `prefers-reduced-motion` respekteres altid. Ingen dekorativ animation. | Rolig oplevelse og tilgængelighed. | SparkSpend har det allerede. |
+| D17 | **Baggrundsfoto serveres fra egen app som fast lag,** aldrig hentet fra Authentik. | Hot-link kan fejle (iOS) og binder appen til én vært. `background-attachment: fixed` virker ikke på iOS Safari. | Running og clean skal flyttes. |
+| D18 | **Kun lyst udtryk.** | Mørk tilstand findes kun på Authentik-login og er ikke godkendt til apps. | Ingen ændring. |
+| D19 | **Dansk brugerflade, du-form, korte aktive sætninger.** Formater: `1.248,5 km`, `5:31 /km`, 24-timers ur, ugen starter mandag, ISO-ugenumre. | Fælles tone og ens formater gør appsene troværdige. | Fælles ordliste udvides i takt med behov. |
+
+## Det der ikke er besluttet
+
+- Dark mode, hvis resten af Useful får det.
+- Fælles ikonsæt (D14 siger kun, hvordan ikoner skal bygges).
+- Web Components til header og brugermenu (se README, "Hvad der ikke er med endnu").

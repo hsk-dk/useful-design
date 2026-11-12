@@ -1,0 +1,120 @@
+/**
+ * Useful design tokens.
+ *
+ * Values marked "approved" come from the dashboard's approved token decisions
+ * (2026-10-01, docs/useful-ui-design-inventory.md §7). Values marked "decided"
+ * were settled for the shared design system in docs/decisions.md.
+ * Every text/background pairing is verified by scripts/check-contrast.mjs.
+ *
+ * Light theme only. Dark mode is not part of the Useful design system.
+ */
+:root {
+	/* Typography: system stack, no licensed web font (approved) */
+	--font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-family-mono: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
+
+	/* Type scale (decided). 14px is the application base; use --text-md for reading-heavy pages. */
+	--text-xs: 0.75rem; /* 12px: meta, labels in tiles */
+	--text-sm: 0.875rem; /* 14px: application base */
+	--text-md: 1rem; /* 16px: reading text, card titles */
+	--text-lg: 1.25rem; /* 20px: section titles, figures in tiles */
+	--text-xl: 1.5rem; /* 24px: page sections */
+	--text-2xl: 2rem; /* 32px: page titles in apps */
+	--text-3xl: 2.5rem; /* 40px: page titles on content pages */
+	--weight-regular: 400;
+	--weight-medium: 500;
+	--weight-semibold: 600;
+	--weight-bold: 700;
+	--weight-extrabold: 800;
+	--line-height-base: 1.6;
+	--line-height-tight: 1.15;
+	--letter-spacing-heading: -0.025em;
+
+	/* Surfaces and background (approved) */
+	--color-background: #c9cfd8; /* + background.jpg and vignette */
+	--color-surface: #ffffff; /* opaque, guarantees AA */
+	--color-surface-muted: #f9fafb;
+	--color-surface-veil: rgba(255, 255, 255, 0.72);
+	--color-panel: rgba(255, 255, 255, 0.86); /* page panel only (decided), never behind small text */
+
+	/* Text (approved). 13.22:1 and 8.23:1 on white; ink on background 8.44:1 */
+	--color-text: #243140;
+	--color-text-muted: #425061;
+
+	/* Borders: card vs control (approved) */
+	--color-border: rgba(36, 49, 64, 0.1);
+	--color-border-control: #d1d5db;
+
+	/* Action colour is split (approved).
+	 * --color-action (#6ba3ff) is 2.53:1 on white: fills and glow only, never text or a lone outline.
+	 * --color-action-strong carries text, icons and button fills: 5.20:1 on white. */
+	--color-action: #6ba3ff;
+	--color-action-strong: #446ea8;
+	--color-action-hover: #3a5f90;
+	--color-on-action: #ffffff;
+	--color-action-gradient: linear-gradient(to bottom right, #9dc0ff, #446ea8); /* decoration only, never behind text */
+
+	/* Focus (decided): a 2px outline in --color-focus-outline (5.20:1 on white, passes 3:1 non-text)
+	 * plus the soft brand glow. The glow alone is 2.53:1 and does not count as the indicator. */
+	--color-focus-outline: #446ea8;
+	--color-focus: #6ba3ff;
+	--focus-ring: 0 0 0 3px rgba(107, 163, 255, 0.3);
+
+	/* App header (decided): deep blue so white text passes AA (6.52:1 to 5.20:1) */
+	--header-gradient: linear-gradient(to right, #3a5f90, #446ea8);
+	--color-on-header: #ffffff;
+
+	/* Status fills and their on-colours (approved). Status always has text and a shape too. */
+	--color-success: #10b981;
+	--color-on-success: #243140;
+	--color-warning: #f59e0b;
+	--color-on-warning: #243140;
+	--color-error: #b52b27;
+	--color-on-error: #ffffff;
+	--color-neutral: #6b7280;
+
+	/* Text colours for good/bad figures (decided). The bright fills above fail as text. */
+	--text-good: #15803d; /* 5.02:1 on white */
+	--text-bad: #b52b27; /* 6.29:1 on white */
+
+	/* Data colours (decided). Series 1 is always blue. All pass 4.5:1 on white and may carry text. */
+	--data-1: #446ea8;
+	--data-2: #0b7a70;
+	--data-3: #6d52ab;
+	--data-4: #a35a00;
+	--data-fill: #6ba3ff; /* fills and sparkline bars only */
+	--data-muted: #d9dee5; /* de-emphasised bars and empty cells */
+
+	/* Radii (approved) */
+	--radius-small: 6px; /* buttons, small elements */
+	--radius-medium: 8px; /* fields, tiles */
+	--radius-large: 14px; /* cards, panels */
+
+	/* Shadows. --shadow-card is for static cards, --shadow-small/-medium signal "you can click this". */
+	--shadow-card: 0 1px 2px rgba(36, 49, 64, 0.06);
+	--shadow-small: 0 6px 16px rgba(0, 0, 0, 0.18);
+	--shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+	/* Spacing: 8px-based (approved) */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+	--space-7: 40px;
+	--space-8: 48px;
+
+	/* Layout (decided): three content widths, one header height, one touch target */
+	--content-width-narrow: 800px; /* single-task tools */
+	--content-width: 960px; /* default */
+	--content-width-wide: 1280px; /* data-dense pages */
+	--navigation-height: 64px;
+	--target-size: 2.75rem; /* 44px */
+	--breakpoint-main: 768px; /* documented; media queries cannot use custom properties */
+
+	/* Motion (decided) */
+	--duration-fast: 150ms;
+	--duration-base: 250ms;
+	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}

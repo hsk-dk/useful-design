@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Useful design</title>
+<link rel="stylesheet" href="useful.css">
+<style>
+/* Guide-only layout. Everything visual comes from useful.css; these rules only arrange the page. */
+.g-body { --u-background-image: url('../assets/background.jpg'); }
+.g-wrap { max-width: var(--content-width-wide); margin: var(--space-5) auto var(--space-8); padding: 0 var(--space-4); }
+.g-section { padding-top: var(--space-7); }
+.g-eyebrow { font-size: var(--text-xs); font-weight: var(--weight-bold); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-1); }
+.g-lede { font-size: var(--text-md); max-width: 70ch; color: var(--color-text-muted); }
+.g-h2 { font-size: var(--text-xl); margin: 0 0 var(--space-3); }
+.g-cols { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); margin-top: var(--space-4); }
+.g-demo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding: var(--space-4); margin: var(--space-3) 0; background: var(--color-surface-muted); border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
+.g-demo--stack { flex-direction: column; align-items: stretch; }
+.g-demo--bare { padding: 0; overflow: hidden; background: transparent; }
+details { margin-top: var(--space-2); }
+summary { cursor: pointer; color: var(--color-action-strong); font-size: var(--text-sm); }
+summary:focus-visible { outline: 2px solid var(--color-focus-outline); outline-offset: 2px; }
+pre { margin: var(--space-2) 0 0; padding: var(--space-3); overflow: auto; background: #1a2635; color: #e8ecef; border-radius: var(--radius-medium); font-family: var(--font-family-mono); font-size: 12.5px; line-height: 1.55; }
+code { font-family: var(--font-family-mono); font-size: 0.9em; background: var(--color-surface-muted); border: 1px solid var(--color-border); border-radius: 4px; padding: 1px 5px; }
+.g-sw { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+.g-sw > div { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-medium); overflow: hidden; }
+.g-sw i { display: block; height: 3.5rem; border-bottom: 1px solid var(--color-border); }
+.g-sw span { display: block; padding: var(--space-2) var(--space-3); font-size: var(--text-xs); line-height: 1.4; color: var(--color-text-muted); }
+.g-sw b { display: block; font-size: var(--text-sm); color: var(--color-text); }
+table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); background: var(--color-surface); border: 1px solid var(--color-border); }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-muted); background: var(--color-surface-muted); }
+.g-scroll { overflow-x: auto; }
+.g-spark { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.g-spark i { display: block; width: 9px; border-radius: 2px 2px 0 0; }
+.g-fail { color: var(--text-bad); font-weight: var(--weight-bold); }
+.g-pass { color: var(--text-good); font-weight: var(--weight-bold); }
+</style>
+</head>
+<body class="u-page g-body">
+<a class="u-skip-link" href="#indhold">Spring til indhold</a>
+
+<header class="u-header">
+  <div class="u-header__inner">
+    <a class="u-header__brand" href="#top">Useful design</a>
+    <nav class="u-header__nav" aria-label="Sider">
+      <a class="u-header__link" href="#tokens">Tokens</a>
+      <a class="u-header__link" href="#komponenter">Komponenter</a>
+      <a class="u-header__link" href="#data">Data</a>
+      <a class="u-header__link" href="#tilgaengelighed">Tilgængelighed</a>
+      <a class="u-header__link" href="#brug">Sådan bruges den</a>
+    </nav>
+    <div class="u-header__actions"><span class="u-badge" id="ver">v0.1.0</span></div>
+  </div>
+</header>
+
+<main id="indhold" class="g-wrap">
+<div class="u-panel" id="top">
+
+  <p class="g-eyebrow">Fælles designsystem for Useful-apps</p>
+  <h1 class="u-h1" style="font-size:var(--text-3xl)">Ét udtryk, mange apps</h1>
+  <p class="g-lede" style="margin-top:var(--space-3)">Tokens og framework-neutrale CSS-klasser, som virker i React, Svelte, PHP med Bootstrap og ren HTML. Guiden bruger selv klasserne, så hvert eksempel er den rigtige kode. Beslutningerne og begrundelserne står i <a class="u-link" href="decisions.md">decisions.md</a>.</p>
+  <div class="u-row" style="margin-top:var(--space-4)">
+    <span class="u-badge">Kun lyst udtryk</span><span class="u-badge">WCAG 2.2 AA</span><span class="u-badge">Dansk brugerflade</span><span class="u-badge">Fra 320 px</span>
+  </div>
+
+  <!-- ===== TOKENS ===== -->
+  <section class="g-section" id="tokens">
+    <p class="g-eyebrow">Tokens</p>
+    <h2 class="u-h2 g-h2">Farver, form og mål</h2>
+    <p class="g-lede">Navne og værdier stammer fra dashboardets godkendte tokens og er udvidet med de beslutninger, der står i <code>decisions.md</code>. Kontrasten er målt mod hvid flade og kontrolleres automatisk af <code>scripts/check-contrast.mjs</code>.</p>
+    <h3 class="u-h3" style="margin-top:var(--space-5)">Flader og tekst</h3>
+    <div class="g-sw" id="sw-surface"></div>
+    <h3 class="u-h3" style="margin-top:var(--space-5)">Handling, fokus og header</h3>
+    <div class="g-sw" id="sw-action"></div>
+    <h3 class="u-h3" style="margin-top:var(--space-5)">Status og data</h3>
+    <div class="g-sw" id="sw-status"></div>
+    <div class="g-cols">
+      <div class="u-card"><h3 class="u-h3">Skala</h3>
+        <div class="g-scroll"><table><thead><tr><th>Token</th><th>Størrelse</th><th>Brug</th></tr></thead><tbody id="type-rows"></tbody></table></div></div>
+      <div class="u-card"><h3 class="u-h3">Form og mål</h3>
+        <p class="u-text-muted">Hjørner <code>6 / 8 / 14 px</code> (knapper, felter og tiles, kort). Afstand <code>4 · 8 · 12 · 16 · 24 · 32 · 40 · 48 px</code>. Indholdsbredde <code>800 / 960 / 1280 px</code>. Headerhøjde <code>64 px</code>. Klikmål <code>44 px</code>. Bevægelse <code>150 / 250 ms</code>.</p>
+        <p class="u-text-muted" style="margin-top:var(--space-2)"><b style="color:var(--color-text)">Skygge betyder "kan klikkes":</b> kun interaktive kort får <code>--shadow-small</code>. Statiske kort får <code>--shadow-card</code>.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== COMPONENTS ===== -->
+  <section class="g-section" id="komponenter">
+    <p class="g-eyebrow">Komponenter</p>
+    <h2 class="u-h2 g-h2">Klasser med u-præfiks</h2>
+    <p class="g-lede">Rene HTML- og CSS-opskrifter uden JavaScript. Fanerne og menuerne skal appen selv gøre interaktive. Åbn "HTML" under hvert eksempel for at kopiere koden.</p>
+    <div class="g-cols" id="components"></div>
+  </section>
+
+  <!-- ===== DATA ===== -->
+  <section class="g-section" id="data">
+    <p class="g-eyebrow">Data og diagrammer</p>
+    <h2 class="u-h2 g-h2">Tal, der er lette at læse</h2>
+    <div class="g-cols">
+      <div class="u-card"><h3 class="u-h3">Datafarver</h3>
+        <div class="g-sw" id="sw-data" style="grid-template-columns:repeat(2,1fr);margin-top:var(--space-2)"></div>
+        <p class="u-text-muted" style="margin-top:var(--space-3)">Første serie er altid blå, så "mit løb" ser ens ud overalt. De øvrige er til flere personer eller serier. Alle består som tekst. <code>--data-fill</code> (<code>#6BA3FF</code>) er kun til søjler og flader.</p></div>
+      <div class="u-card"><h3 class="u-h3">Retning på ændringer</h3>
+        <div class="g-demo"><div><span class="u-text-small u-text-muted">Pris</span><br><span class="u-delta u-delta--bad">▲ +12 % dyrere</span></div><div><span class="u-text-small u-text-muted">Distance</span><br><span class="u-delta u-delta--good">▲ +12 % mere</span></div></div>
+        <p class="u-text-muted">Farven følger, om "op" er godt for målet, ikke pilens retning. Pil og tekst står altid ved siden af. Lys grøn og rød (<code>#22C55E</code>, <code>#EF4444</code>) består ikke som tekst.</p></div>
+      <div class="u-card"><h3 class="u-h3">Trendgrafer</h3>
+        <div class="g-demo"><div class="g-spark" id="sp1" role="img" aria-label="Tolv søjler, stigende fra 12 til 47"></div><div class="g-spark" id="sp2" role="img" aria-label="Tolv søjler, svingende mellem 22 og 41"></div></div>
+        <p class="u-text-muted">Søjler til adskilte perioder, linje eller areal til forløb. Seneste periode i fuld farve, resten dæmpet. Hver graf har en tekstbeskrivelse og kan vises som tabel.</p></div>
+      <div class="u-card"><h3 class="u-h3">Regler</h3>
+        <p class="u-text-muted">Én farve har én betydning. Akser viser værdier, og alle mærkater nævner et tal, grafen faktisk når. Tal skrives dansk (<span class="u-num">1.248,5 km</span>, <span class="u-num">5:31 /km</span>). Eksempeldata er altid mærket. Status-farver bruges kun til status.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== ACCESSIBILITY ===== -->
+  <section class="g-section" id="tilgaengelighed">
+    <p class="g-eyebrow">Tilgængelighed og sprog</p>
+    <h2 class="u-h2 g-h2">Det der altid skal være på plads</h2>
+    <div class="g-cols">
+      <div class="u-card"><h3 class="u-h3">WCAG 2.2 AA</h3><p class="u-text-muted">Tekst mindst 4,5 til 1, grafik og fokus mindst 3 til 1. Kontrollen kører i CI, og en ændring af et token fejler, hvis en parring ikke består.</p></div>
+      <div class="u-card"><h3 class="u-h3">Tastatur og fokus</h3><p class="u-text-muted">Synlig fokus (2 px outline plus glød), spring-til-indhold først, logiske overskrifter og klikmål på mindst 44 px. Handlinger må ikke kun virke ved hover.</p></div>
+      <div class="u-card"><h3 class="u-h3">Status</h3><p class="u-text-muted">Farve, form og tekst. Tekstetiketten er obligatorisk: Online, Offline, Ustabil, Vedligehold, Ukendt, Forældet.</p></div>
+      <div class="u-card"><h3 class="u-h3">Bevægelse</h3><p class="u-text-muted"><code>prefers-reduced-motion</code> respekteres af alle komponenter. Korte overgange, ingen dekorativ animation.</p></div>
+      <div class="u-card"><h3 class="u-h3">Dansk tone</h3><p class="u-text-muted">Korte, aktive sætninger. En knap siger præcis, hvad der sker. Fejl siger, hvad der gik galt og hvad man kan gøre, uden interne detaljer.</p></div>
+      <div class="u-card"><h3 class="u-h3">Formater</h3><p class="u-text-muted">Ugen starter mandag, ISO-ugenumre, 24-timers ur, <span class="u-num">1.248,5 km</span>, "torsdag 12. november".</p></div>
+    </div>
+    <h3 class="u-h3" style="margin-top:var(--space-5)">Parringer, der ikke må bruges</h3>
+    <div class="g-scroll"><table><thead><tr><th>Parring</th><th>Kontrast</th><th>Brug i stedet</th></tr></thead><tbody>
+      <tr><td><code>#6BA3FF</code> som tekst eller enlig kant</td><td class="g-fail">2,53 til 1</td><td><code>--color-action-strong</code> (<code>#446EA8</code>, 5,20)</td></tr>
+      <tr><td>Hvid tekst på <code>#6BA3FF</code> eller på gradienten <code>#9DC0FF → #446EA8</code></td><td class="g-fail">1,8 til 5,2</td><td>Flad <code>#446EA8</code></td></tr>
+      <tr><td>Hvid tekst på <code>#5D8FD9 → #6EA0EB</code> (gammel topbjælke)</td><td class="g-fail">2,66 til 3,28</td><td><code>--header-gradient</code> (6,52 til 5,20)</td></tr>
+      <tr><td><code>#64748B</code> på <code>#F1F5F9</code></td><td class="g-fail">4,34 til 1</td><td><code>--color-text-muted</code> (<code>#425061</code>)</td></tr>
+      <tr><td><code>#EF4444</code> / <code>#22C55E</code> som tekst</td><td class="g-fail">3,76 / 2,28</td><td><code>--text-bad</code> / <code>--text-good</code></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <!-- ===== USE ===== -->
+  <section class="g-section" id="brug">
+    <p class="g-eyebrow">Sådan bruges den</p>
+    <h2 class="u-h2 g-h2">Kopiér én fil, og lås versionen</h2>
+    <div class="g-cols">
+      <div class="u-card"><h3 class="u-h3">1. Tag filen i brug</h3><p class="u-text-muted">Kopiér <code>dist/useful.css</code> ind i appen, eller peg på et tag. Første linje bærer versionen (<code>useful-design v0.1.0</code>). Sæt <code>class="u-page"</code> på <code>&lt;body&gt;</code>, og peg <code>--u-background-image</code> på en fil i appen.</p></div>
+      <div class="u-card"><h3 class="u-h3">2. Brug kun tokens</h3><p class="u-text-muted">Ingen enkeltstående farver, skygger, radier eller afstande, hvor et token findes. Har appen et framework (Bootstrap), så lad tokens stå ved siden af og fastlås dets egne variabler.</p></div>
+      <div class="u-card"><h3 class="u-h3">3. Opgradér, når du vil</h3><p class="u-text-muted"><code>node scripts/check-version.mjs din/useful.css</code> viser, om du er bagud. Nye versioner læses i <code>CHANGELOG.md</code> før opgradering. Aldrig "nyeste" ved kørsel.</p></div>
+    </div>
+    <p class="u-text-muted" style="margin-top:var(--space-4)">Migrering pr. app: <a class="u-link" href="migration.md">migration.md</a> · Forslag til ny K5: <a class="u-link" href="k5-forslag.md">k5-forslag.md</a></p>
+  </section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function swatches(id, items) {
+    var el = document.getElementById(id);
+    items.forEach(function (it) {
+      var d = document.createElement('div');
+      d.innerHTML = '<i style="background:' + it[2] + '"></i><span><b>' + it[1] + '</b><code>' + it[0] + '</code><br>' + it[3] + '</span>';
+      el.appendChild(d);
+    });
+  }
+  swatches('sw-surface', [
+    ['--color-background', 'Baggrund', 'var(--color-background)', '#C9CFD8 + foto'],
+    ['--color-surface', 'Flade', 'var(--color-surface)', '#FFFFFF'],
+    ['--color-surface-muted', 'Dæmpet flade', 'var(--color-surface-muted)', '#F9FAFB'],
+    ['--color-text', 'Tekst', 'var(--color-text)', '#243140 · 13,22 til 1'],
+    ['--color-text-muted', 'Dæmpet tekst', 'var(--color-text-muted)', '#425061 · 8,23 til 1'],
+    ['--color-border-control', 'Kontrolkant', 'var(--color-border-control)', '#D1D5DB']
+  ]);
+  swatches('sw-action', [
+    ['--color-action-strong', 'Handling', 'var(--color-action-strong)', '#446EA8 · 5,20 til 1'],
+    ['--color-action-hover', 'Hover', 'var(--color-action-hover)', '#3A5F90 · 6,52 til 1'],
+    ['--color-action', 'Kun udfyldning og glød', 'var(--color-action)', '#6BA3FF · 2,53 til 1'],
+    ['--color-focus-outline', 'Fokus-outline', 'var(--color-focus-outline)', '#446EA8 · 5,20 til 1'],
+    ['--header-gradient', 'Appheader', 'var(--header-gradient)', '#3A5F90 → #446EA8']
+  ]);
+  swatches('sw-status', [
+    ['--color-success', 'Succes', 'var(--color-success)', '#10B981 + mørk tekst'],
+    ['--color-warning', 'Advarsel', 'var(--color-warning)', '#F59E0B + mørk tekst'],
+    ['--color-error', 'Fejl', 'var(--color-error)', '#B52B27 + hvid tekst'],
+    ['--color-neutral', 'Neutral', 'var(--color-neutral)', '#6B7280 · 4,83 til 1'],
+    ['--text-good', 'Godt (tekst)', 'var(--text-good)', '#15803D · 5,02 til 1'],
+    ['--text-bad', 'Dårligt (tekst)', 'var(--text-bad)', '#B52B27 · 6,29 til 1']
+  ]);
+  swatches('sw-data', [
+    ['--data-1', 'Blå', 'var(--data-1)', '#446EA8 · 5,20'],
+    ['--data-2', 'Grøn-blå', 'var(--data-2)', '#0B7A70 · 5,21'],
+    ['--data-3', 'Violet', 'var(--data-3)', '#6D52AB · 6,10'],
+    ['--data-4', 'Rav', 'var(--data-4)', '#A35A00 · 5,22']
+  ]);
+
+  var rows = [
+    ['--text-xs', '12 px', 'Meta, etiketter i tiles'], ['--text-sm', '14 px', 'Applikationens base'],
+    ['--text-md', '16 px', 'Læsetekst, korttitler'], ['--text-lg', '20 px', 'Sektionstitler, tal i tiles'],
+    ['--text-xl', '24 px', 'Sektioner'], ['--text-2xl', '32 px', 'Sidetitel i apps'], ['--text-3xl', '40 px', 'Sidetitel på indholdssider']
+  ];
+  var tb = document.getElementById('type-rows');
+  rows.forEach(function (r) { var tr = document.createElement('tr'); tr.innerHTML = '<td><code>' + r[0] + '</code></td><td class="u-num">' + r[1] + '</td><td>' + r[2] + '</td>'; tb.appendChild(tr); });
+
+  var comps = [
+    { t: 'Appheader', n: 'Én dyb blå header til alle apps. Primær navigation som understregede links, højst fem.', demo: 'bare', wide: true, h:
+`<header class="u-header">
+  <div class="u-header__inner">
+    <a class="u-header__brand" href="/">Running</a>
+    <nav class="u-header__nav" aria-label="Hovednavigation">
+      <a class="u-header__link" href="/" aria-current="page">Nu</a>
+      <a class="u-header__link" href="/uge">Uge</a>
+      <a class="u-header__link" href="/aar">År</a>
+    </nav>
+    <div class="u-header__actions">
+      <button class="u-btn u-btn--header" type="button">Menu</button>
+    </div>
+  </div>
+</header>` },
+    { t: 'Knapper', n: 'Primær er flad #446EA8. Højst én primær pr. område. Mindst 44 px høj.', h:
+`<button class="u-btn u-btn--primary" type="button">Gem ændringer</button>
+<button class="u-btn u-btn--secondary" type="button">Annuller</button>
+<button class="u-btn u-btn--danger" type="button">Slet</button>
+<button class="u-btn u-btn--primary" type="button" disabled>Deaktiveret</button>` },
+    { t: 'Faner i en side', n: 'Fyldte faner til visninger. Aktiv fane er fed, fyldt og understreget, markeret med aria-current.', h:
+`<nav aria-label="Visning">
+  <ul class="u-tabs">
+    <li><a class="u-tab" href="?visning=oversigt" aria-current="page">Oversigt</a></li>
+    <li><a class="u-tab" href="?visning=tjenester">Tjenester</a></li>
+    <li><a class="u-tab" href="?visning=infrastruktur">Infrastruktur</a></li>
+  </ul>
+</nav>` },
+    { t: 'Kort og nøgletal', n: 'Kun interaktive kort har skygge. Hele kortet er ét klikmål via det strakte link.', h:
+`<div class="u-card u-card--interactive">
+  <h3 class="u-card__title"><a class="u-link" href="/wiki">Wiki</a></h3>
+  <p class="u-card__meta">Dokumentation og noter</p>
+  <span class="u-status u-status--online"><span class="u-status__shape" aria-hidden="true"></span>Online</span>
+</div>
+
+<div class="u-tile">
+  <span class="u-tile__value">86,4 km</span>
+  <span class="u-tile__label">November</span>
+</div>` },
+    { t: 'Status', n: 'Farve, form og tekst. Tekstetiketten er obligatorisk.', demo: 'grid', h:
+`<span class="u-status u-status--online"><span class="u-status__shape" aria-hidden="true"></span>Online</span>
+<span class="u-status u-status--offline"><span class="u-status__shape" aria-hidden="true"></span>Offline</span>
+<span class="u-status u-status--unstable"><span class="u-status__shape" aria-hidden="true"></span>Ustabil</span>
+<span class="u-status u-status--maintenance"><span class="u-status__shape" aria-hidden="true"></span>Vedligehold</span>
+<span class="u-status u-status--unknown"><span class="u-status__shape" aria-hidden="true"></span>Ukendt</span>
+<span class="u-status u-status--stale"><span class="u-status__shape" aria-hidden="true"></span>Forældet</span>` },
+    { t: 'Beskeder', n: 'Venstre kant i farven, og niveauet står som tekst. Fejl viser aldrig interne detaljer.', demo: 'stack', h:
+`<div class="u-notice" role="status"><b class="u-notice__level">Information</b><span>Backup kører i nat kl. 02.</span></div>
+<div class="u-notice u-notice--warning" role="status"><b class="u-notice__level">Advarsel</b><span>Certifikatet udløber om 9 dage.</span></div>
+<div class="u-notice u-notice--error" role="alert"><b class="u-notice__level">Fejl</b><span>Kunne ikke hente status. Prøv igen om lidt.</span></div>` },
+    { t: 'Felter', n: 'Label altid synlig. Fejl kobles til feltet med aria-describedby.', demo: 'stack', h:
+`<div class="u-field">
+  <label class="u-field__label" for="soeg">Søg i tjenester</label>
+  <input class="u-field__control" id="soeg" type="text" aria-describedby="soeg-hint">
+  <span class="u-field__hint" id="soeg-hint">Skriv navn eller beskrivelse.</span>
+</div>
+
+<div class="u-field u-field--invalid">
+  <label class="u-field__label" for="dato">Dato</label>
+  <input class="u-field__control" id="dato" type="text" aria-invalid="true" aria-describedby="dato-fejl">
+  <span class="u-field__error" id="dato-fejl">Skriv datoen som 2026-11-12.</span>
+</div>` },
+    { t: 'Tilstande', n: 'Indlæser, tom, fejl og forældet er altid designet. Tom tilstand siger, hvad der sker næste gang.', demo: 'stack', h:
+`<div aria-busy="true" class="u-stack">
+  <div class="u-skeleton" style="width:60%"></div>
+  <div class="u-skeleton" style="width:90%"></div>
+</div>
+
+<div class="u-empty">
+  <p class="u-empty__title">Ingen løb endnu</p>
+  <p>Når næste løb er synkroniseret, vises det her.</p>
+</div>
+
+<div class="u-notice u-notice--warning" role="status"><b class="u-notice__level">Forældet</b><span>Data er fra kl. 08.12.</span></div>` },
+    { t: 'Ændring og badge', n: 'Farven følger, om "op" er godt for målet.', h:
+`<span class="u-delta u-delta--good">▲ +12 % mere</span>
+<span class="u-delta u-delta--bad">▲ +12 % dyrere</span>
+<span class="u-badge">Internt</span>` }
+  ];
+  var host = document.getElementById('components');
+  comps.forEach(function (c) {
+    var card = document.createElement('div'); card.className = 'u-card'; if (c.wide) card.style.gridColumn = '1 / -1';
+    var h = document.createElement('h3'); h.className = 'u-h3'; h.textContent = c.t; card.appendChild(h);
+    var p = document.createElement('p'); p.className = 'u-text-muted'; p.textContent = c.n; card.appendChild(p);
+    var demo = document.createElement('div');
+    demo.className = 'g-demo' + (c.demo === 'stack' ? ' g-demo--stack' : '') + (c.demo === 'bare' ? ' g-demo--bare' : '');
+    if (c.demo === 'grid') demo.style.cssText = 'display:grid;grid-template-columns:1fr 1fr';
+    demo.innerHTML = c.h;
+    card.appendChild(demo);
+    var det = document.createElement('details'); var sm = document.createElement('summary'); sm.textContent = 'HTML';
+    var pre = document.createElement('pre'); var code = document.createElement('code'); code.style.cssText = 'background:none;border:0;padding:0;color:inherit'; code.textContent = c.h;
+    pre.appendChild(code); det.appendChild(sm); det.appendChild(pre); card.appendChild(det);
+    host.appendChild(card);
+  });
+
+  function bars(id, vals, color) {
+    var el = document.getElementById(id), mx = Math.max.apply(null, vals);
+    vals.forEach(function (v, i) {
+      var b = document.createElement('i'); b.style.height = Math.round(v / mx * 40) + 'px';
+      b.style.background = i === vals.length - 1 ? color : 'var(--data-muted)'; el.appendChild(b);
+    });
+  }
+  bars('sp1', [12, 18, 15, 22, 20, 28, 24, 31, 36, 34, 41, 47], 'var(--data-1)');
+  bars('sp2', [28, 34, 22, 30, 36, 25, 39, 33, 27, 41, 37, 41], 'var(--data-2)');
+})();
+</script>
+</body>
+</html>

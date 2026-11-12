@@ -1,0 +1,164 @@
+/* Components. Framework-neutral classes with the u- prefix. No JavaScript required. */
+
+/* Focus: one rule for every interactive u- element (decided, see tokens.css). */
+.u-btn:focus-visible,
+.u-tab:focus-visible,
+.u-header__link:focus-visible,
+.u-field__control:focus-visible,
+.u-card--interactive a:focus-visible,
+.u-link:focus-visible {
+	outline: 2px solid var(--color-focus-outline);
+	outline-offset: 2px;
+	box-shadow: var(--focus-ring);
+}
+.u-header .u-btn:focus-visible,
+.u-header__link:focus-visible { outline-color: var(--color-on-header); box-shadow: none; }
+
+/* ---- Buttons ------------------------------------------------------------ */
+.u-btn {
+	display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+	min-height: var(--target-size);
+	padding: 0 var(--space-5);
+	font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium);
+	border: 1px solid transparent; border-radius: var(--radius-small);
+	cursor: pointer; text-decoration: none;
+	transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+.u-btn--primary { color: var(--color-on-action); background: var(--color-action-strong); box-shadow: var(--shadow-small); }
+.u-btn--primary:hover { background: var(--color-action-hover); }
+.u-btn--secondary { color: #4b5563; background: var(--color-surface); border-color: var(--color-border-control); }
+.u-btn--secondary:hover { color: #374151; background: var(--color-surface-muted); border-color: #9ca3af; }
+.u-btn--danger { color: var(--color-on-error); background: var(--color-error); }
+.u-btn--danger:hover { filter: brightness(0.92); }
+.u-btn--header { color: var(--color-on-header); background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.4); }
+.u-btn--header:hover { background: rgba(255, 255, 255, 0.26); }
+.u-btn:disabled, .u-btn[aria-disabled='true'] { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+
+/* ---- App header (decided: one deep-blue header for every Useful app) ----- */
+.u-header { background: var(--header-gradient); color: var(--color-on-header); box-shadow: var(--shadow-card); }
+.u-header__inner {
+	display: flex; align-items: center; gap: var(--space-5);
+	min-height: var(--navigation-height);
+	max-width: var(--content-width-wide); margin: 0 auto; padding: var(--space-2) var(--space-4);
+}
+.u-header__brand { color: var(--color-on-header); font-size: var(--text-lg); font-weight: var(--weight-extrabold); letter-spacing: var(--letter-spacing-heading); text-decoration: none; }
+.u-header__nav { display: flex; flex-wrap: wrap; gap: var(--space-5); flex: 1; min-width: 0; }
+.u-header__link {
+	display: inline-flex; align-items: center; min-height: var(--target-size);
+	color: var(--color-on-header); font-size: var(--text-sm); font-weight: var(--weight-medium);
+	text-decoration: none; border-bottom: 2px solid transparent;
+}
+.u-header__link:hover { border-bottom-color: rgba(255, 255, 255, 0.7); }
+.u-header__link[aria-current='page'] { font-weight: var(--weight-bold); border-bottom-color: var(--color-on-header); }
+.u-header__actions { display: flex; align-items: center; gap: var(--space-2); flex: none; }
+
+/* ---- Tabs inside a page (filled; the header uses underlined links) ------- */
+.u-tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.u-tab {
+	display: inline-flex; align-items: center; min-height: var(--target-size); min-width: var(--target-size);
+	padding: 0 var(--space-4);
+	color: var(--color-action-strong); background: var(--color-surface); text-decoration: none;
+	border: 1px solid var(--color-border-control); border-bottom: 3px solid transparent; border-radius: var(--radius-small);
+}
+.u-tab:hover { color: var(--color-action-hover); text-decoration: underline; }
+.u-tab[aria-current='page'] {
+	font-weight: var(--weight-bold); color: var(--color-on-action); background: var(--color-action-strong);
+	border-color: var(--color-action-strong); border-bottom-color: var(--color-text); text-decoration: none;
+}
+
+/* ---- Cards and tiles ----------------------------------------------------- */
+.u-card {
+	position: relative; min-width: 0;
+	padding: var(--space-4);
+	background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-large);
+	box-shadow: var(--shadow-card);
+}
+/* Shadow means "clickable": only interactive cards get it. The whole card is one click target. */
+.u-card--interactive { box-shadow: var(--shadow-small); transition: box-shadow var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard); }
+.u-card--interactive:hover { border-color: var(--color-border-control); box-shadow: var(--shadow-medium); }
+.u-card--interactive a::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-large); }
+.u-card__title { margin: 0 0 var(--space-1); font-size: var(--text-md); font-weight: var(--weight-semibold); }
+.u-card__meta { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+.u-tile {
+	display: flex; flex-direction: column; gap: var(--space-1); min-width: 0;
+	padding: var(--space-2) var(--space-3);
+	background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-medium);
+}
+.u-tile__value { font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: 1; font-variant-numeric: tabular-nums; }
+.u-tile__label { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ---- Status: colour + shape + text, never colour alone ------------------- */
+.u-status { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text); }
+.u-status__shape { width: 0.75rem; height: 0.75rem; flex: none; border: 1px solid var(--color-border-control); }
+.u-status--online .u-status__shape { background: var(--color-success); border-color: var(--color-success); border-radius: 50%; }
+.u-status--offline .u-status__shape { background: var(--color-error); border-color: var(--color-error); }
+.u-status--unstable .u-status__shape { background: var(--color-warning); border-color: var(--color-warning); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.u-status--maintenance .u-status__shape { width: 0.875rem; height: 0.4375rem; background: var(--color-surface); border: 2px solid var(--color-action-strong); border-radius: var(--radius-small); }
+.u-status--unknown .u-status__shape { background: var(--color-surface); border-color: var(--color-neutral); border-radius: 50%; }
+.u-status--stale .u-status__shape { background: var(--color-warning); border-color: var(--color-warning); transform: rotate(45deg); }
+.u-status--unknown { color: var(--color-text-muted); }
+
+.u-badge {
+	display: inline-block; padding: var(--space-1) var(--space-2);
+	font-size: var(--text-xs); line-height: 1.2; color: var(--color-text);
+	background: var(--color-surface-muted); border: 1px solid var(--color-border-control); border-radius: var(--radius-small);
+}
+
+/* ---- Notices ------------------------------------------------------------- */
+.u-notice {
+	display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3);
+	padding: var(--space-3) var(--space-4);
+	background: var(--color-surface); border: 1px solid var(--color-border); border-left: 4px solid var(--color-action-strong); border-radius: var(--radius-medium);
+}
+.u-notice--warning { border-left-color: var(--color-warning); }
+.u-notice--error { border-left-color: var(--color-error); }
+.u-notice__level { font-size: 0.8125rem; font-weight: var(--weight-semibold); }
+
+/* ---- Fields -------------------------------------------------------------- */
+.u-field { display: flex; flex-direction: column; gap: 6px; }
+.u-field__label { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text); }
+.u-field__control {
+	width: 100%; min-height: var(--target-size); padding: var(--space-3) var(--space-4);
+	font: inherit; color: var(--color-text);
+	background: var(--color-surface); border: 1px solid var(--color-border-control); border-radius: var(--radius-medium);
+}
+.u-field__control:focus { outline: none; border-color: var(--color-focus-outline); box-shadow: var(--focus-ring); }
+.u-field__control:focus-visible { outline: 2px solid var(--color-focus-outline); outline-offset: 2px; }
+.u-field__control[readonly] { background: var(--color-surface-muted); color: var(--color-text-muted); }
+.u-field__hint { font-size: var(--text-xs); color: var(--color-text-muted); }
+.u-field__error { font-size: var(--text-xs); color: var(--text-bad); font-weight: var(--weight-medium); }
+.u-field--invalid .u-field__control { border-color: var(--color-error); }
+
+/* ---- States -------------------------------------------------------------- */
+.u-skeleton {
+	height: 0.875rem; border-radius: 4px;
+	background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%); background-size: 200% 100%;
+	animation: u-shimmer 1.4s linear infinite;
+}
+@keyframes u-shimmer { to { background-position: -200% 0; } }
+.u-empty { padding: var(--space-5); text-align: center; color: var(--color-text-muted); background: var(--color-surface); border: 1px dashed var(--color-border-control); border-radius: var(--radius-large); }
+.u-empty__title { margin: 0 0 var(--space-1); color: var(--color-text); font-size: var(--text-md); font-weight: var(--weight-semibold); }
+
+/* ---- Figures: change with direction. Colour follows whether "up" is good for the metric. ---- */
+.u-delta { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
+.u-delta--good { color: var(--text-good); }
+.u-delta--bad { color: var(--text-bad); }
+.u-delta--neutral { color: var(--color-text-muted); }
+
+/* ---- Motion: always respect the preference ------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ---- Small screens ---------------------------------------------------------- */
+@media (max-width: 30rem) {
+	.u-header__inner { gap: var(--space-3); }
+	.u-header__nav { gap: var(--space-3); }
+	.u-panel { padding: var(--space-4); }
+}
