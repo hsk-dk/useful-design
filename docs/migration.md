@@ -26,7 +26,13 @@ En app er migreret, når den bruger `useful.css` (eller tokens) uden enkeltståe
 - [ ] Trendgrafer (Chart.js): `#6BA3FF` → `--data-fill` til søjler, `--data-1` til tekst.
 - [ ] `prefers-reduced-motion` findes allerede. Behold.
 
+## Alle apps: tekststørrelse
+
+- [ ] `.u-page` sætter 14 px og linjehøjde 1,6 på `body` (D10). Det ændrer en apps eksisterende tekst. Tjek siderne bagefter, eller sæt `font-size` og `line-height` på `.u-page` midlertidigt, mens komponenterne flyttes over.
+
 ## Homelab-portalen (SvelteKit, `src/lib/styles/tokens.css`)
+
+*Gjort 2026-11-16 (v0.2.0): tokens, baggrund, fokus, komponenter, header og navigation. Se portalens `docs/design-adoption-plan.md`.*
 
 - [ ] Erstat `tokens.css` med tokens fra `dist/useful.css` (nye: header, fokus, data, tekstfarver, skala, bredder).
 - [ ] Header: hvid → `.u-header` (dyb blå), logo og titel bevares.

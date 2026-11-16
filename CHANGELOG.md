@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0
+
+Ny mindre version, samlet fra homelab-portalens overgang til pakken. Ingen brydende ændringer: alt nyt er tilføjet, og eksisterende klasser virker som før.
+
+- Ny logoudgave: `assets/useful-logo-light.svg` (hvid) til den blå header.
+- Ny modifikator `u-header__nav--tabbar`: primær navigation bliver en bundtabbar på telefon (D9). Frivillig, så en eksisterende header ikke ændrer sig.
+- Ny `u-card__action` til et sekundært link i et interaktivt kort. Kun linkets eget område er klikbart, mens `u-card--interactive a::after` stadig strækker det primære link.
+- Ny komponent `u-loading` (spinner og tekst, til `role="status"`). Bevægelsen følger reduced-motion-reglen.
+- Ny `u-notice--info`, og `u-notice__level` har layout til et ikon eller en form.
+- Migreringsplanen advarer om, at `.u-page` ændrer tekststørrelse og linjehøjde (D10).
+- README: Running og homelab-portalen bruger pakken.
+
 ## 0.2.0
 
 Ny mindre version. Ingen brydende ændringer.

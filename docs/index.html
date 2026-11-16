@@ -198,7 +198,7 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
   rows.forEach(function (r) { var tr = document.createElement('tr'); tr.innerHTML = '<td><code>' + r[0] + '</code></td><td class="u-num">' + r[1] + '</td><td>' + r[2] + '</td>'; tb.appendChild(tr); });
 
   var comps = [
-    { t: 'Appheader', n: 'Én dyb blå header til alle apps. Primær navigation som understregede links, højst fem.', demo: 'bare', wide: true, h:
+    { t: 'Appheader', n: 'Én dyb blå header til alle apps. Primær navigation som understregede links, højst fem. Tilføj u-header__nav--tabbar, så navigationen på telefon bliver en bundtabbar. Brug assets/useful-logo-light.svg som logo på den blå baggrund.', demo: 'bare', wide: true, h:
 `<header class="u-header">
   <div class="u-header__inner">
     <a class="u-header__brand" href="/">Running</a>
@@ -225,11 +225,12 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
     <li><a class="u-tab" href="?visning=infrastruktur">Infrastruktur</a></li>
   </ul>
 </nav>` },
-    { t: 'Kort og nøgletal', n: 'Kun interaktive kort har skygge. Hele kortet er ét klikmål via det strakte link.', h:
+    { t: 'Kort og nøgletal', n: 'Kun interaktive kort har skygge. Hele kortet er ét klikmål via det strakte link. Et sekundært link i kortet får u-card__action, så kun det eget område er klikbart.', h:
 `<div class="u-card u-card--interactive">
   <h3 class="u-card__title"><a class="u-link" href="/wiki">Wiki</a></h3>
   <p class="u-card__meta">Dokumentation og noter</p>
   <span class="u-status u-status--online"><span class="u-status__shape" aria-hidden="true"></span>Online</span>
+  <a class="u-link u-card__action" href="/wiki/hjaelp">Dokumentation</a>
 </div>
 
 <div class="u-tile">
@@ -245,6 +246,7 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
 <span class="u-status u-status--stale"><span class="u-status__shape" aria-hidden="true"></span>Forældet</span>` },
     { t: 'Beskeder', n: 'Venstre kant i farven, og niveauet står som tekst. Fejl viser aldrig interne detaljer.', demo: 'stack', h:
 `<div class="u-notice" role="status"><b class="u-notice__level">Information</b><span>Backup kører i nat kl. 02.</span></div>
+<div class="u-notice u-notice--info" role="status"><b class="u-notice__level">Information</b><span>Vedligehold lørdag kl. 10.</span></div>
 <div class="u-notice u-notice--warning" role="status"><b class="u-notice__level">Advarsel</b><span>Certifikatet udløber om 9 dage.</span></div>
 <div class="u-notice u-notice--error" role="alert"><b class="u-notice__level">Fejl</b><span>Kunne ikke hente status. Prøv igen om lidt.</span></div>` },
     { t: 'Felter', n: 'Label altid synlig. Fejl kobles til feltet med aria-describedby.', demo: 'stack', h:
@@ -260,7 +262,9 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
   <span class="u-field__error" id="dato-fejl">Skriv datoen som 2026-11-12.</span>
 </div>` },
     { t: 'Tilstande', n: 'Indlæser, tom, fejl og forældet er altid designet. Tom tilstand siger, hvad der sker næste gang.', demo: 'stack', h:
-`<div aria-busy="true" class="u-stack">
+`<p class="u-loading" role="status"><span class="u-loading__spinner" aria-hidden="true"></span>Indlæser madplan …</p>
+
+<div aria-busy="true" class="u-stack">
   <div class="u-skeleton" style="width:60%"></div>
   <div class="u-skeleton" style="width:90%"></div>
 </div>
