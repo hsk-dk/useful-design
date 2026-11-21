@@ -1,13 +1,13 @@
 # Changelog
 
-## Ikke udgivet
+## 0.4.0
 
-Kun dokumentation (forslag fra SparkSpend). Ingen tokens eller klasser er ændret, så der er ingen ny version.
+Ny mindre version, fra SparkSpends overgang til pakken. Ingen brydende ændringer: alt nyt er tilføjet, og ingen app ændrer sig uden at vælge det.
 
-- Forslag D23: datafarver til flere end fire serier (lysstyrkespredning og markørform pr. serie).
-- Forslag D24: domænefarver gennem hele en app, og årsserier genbruger dem ikke som identitet.
-- Forslag D25: klikmål efter markør, 44 px med finger og 36 px med mus (afløser D21 i datatætte apps).
-- Forslag D26: tekstalternativer til diagrammer og spring-til-indhold.
+- Nye tokens `--series-1` til `--series-6` (D23): datafarver til flere end fire serier, trinnet i lysstyrke. Kontrastkontrollen tester 3:1 mod hvid, delta E 30 parvis for fire slags farvesyn, 14 L* mellem de tre første og 8 L* mellem naboer.
+- Nyt token `--target-size-fine` (36 px) og valgfri klasse `u-pointer-aware` (D25): klikmål 36 px med mus og 44 px med finger (`pointer: coarse`). Uden klassen er alt som før (D21).
+- Ny `docs/charts.md` (D23, D24, D26): markørform pr. serie, domænefarver mod årsserier, tekstalternativ til diagrammer med kode, og spring-til-indhold.
+- Nye beslutninger D23 til D26. Stilguiden viser seriefarverne og nævner `u-pointer-aware`.
 
 ## 0.3.0
 
