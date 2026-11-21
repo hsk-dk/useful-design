@@ -1,5 +1,14 @@
 # Changelog
 
+## Ikke udgivet
+
+Kun dokumentation (forslag fra SparkSpend). Ingen tokens eller klasser er ændret, så der er ingen ny version.
+
+- Forslag D23: datafarver til flere end fire serier (lysstyrkespredning og markørform pr. serie).
+- Forslag D24: domænefarver gennem hele en app, og årsserier genbruger dem ikke som identitet.
+- Forslag D25: klikmål efter markør, 44 px med finger og 36 px med mus (afløser D21 i datatætte apps).
+- Forslag D26: tekstalternativer til diagrammer og spring-til-indhold.
+
 ## 0.3.0
 
 Ny mindre version, samlet fra homelab-portalens overgang til pakken. Ingen brydende ændringer: alt nyt er tilføjet, og eksisterende klasser virker som før.
