@@ -100,6 +100,9 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
       <div class="u-card"><h3 class="u-h3">Datafarver</h3>
         <div class="g-sw" id="sw-data" style="grid-template-columns:repeat(2,1fr);margin-top:var(--space-2)"></div>
         <p class="u-text-muted" style="margin-top:var(--space-3)">Første serie er altid blå, så "mit løb" ser ens ud overalt. De øvrige er til flere personer eller serier. Alle består som tekst. <code>--data-fill</code> (<code>#6BA3FF</code>) er kun til søjler og flader.</p></div>
+      <div class="u-card"><h3 class="u-h3">Mange serier (D23)</h3>
+        <div class="g-sw" id="sw-series" style="grid-template-columns:repeat(2,1fr);margin-top:var(--space-2)"></div>
+        <p class="u-text-muted" style="margin-top:var(--space-3)">Til flere end fire serier, fx ét år pr. linje. Trinnet i lysstyrke og en markørform pr. serie gør, at serierne kan skelnes uden farve. De er til linjer og flader, ikke til tekst, og de erstatter ikke <code>--data-1</code> til <code>--data-4</code>. Se <code>docs/charts.md</code>.</p></div>
       <div class="u-card"><h3 class="u-h3">Retning på ændringer</h3>
         <div class="g-demo"><div><span class="u-text-small u-text-muted">Pris</span><br><span class="u-delta u-delta--bad">▲ +12 % dyrere</span></div><div><span class="u-text-small u-text-muted">Distance</span><br><span class="u-delta u-delta--good">▲ +12 % mere</span></div></div>
         <p class="u-text-muted">Farven følger, om "op" er godt for målet, ikke pilens retning. Pil og tekst står altid ved siden af. Lys grøn og rød (<code>#22C55E</code>, <code>#EF4444</code>) består ikke som tekst.</p></div>
@@ -188,6 +191,14 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
     ['--data-3', 'Violet', 'var(--data-3)', '#6D52AB · 6,10'],
     ['--data-4', 'Rav', 'var(--data-4)', '#A35A00 · 5,22']
   ]);
+  swatches('sw-series', [
+    ['--series-1', 'Serie 1', 'var(--series-1)', '#4F1E1E · cirkel'],
+    ['--series-2', 'Serie 2', 'var(--series-2)', '#F35E14 · trekant'],
+    ['--series-3', 'Serie 3', 'var(--series-3)', '#1B67BE · firkant'],
+    ['--series-4', 'Serie 4', 'var(--series-4)', '#C87F6D · rombe'],
+    ['--series-5', 'Serie 5', 'var(--series-5)', '#7C14F3 · kryds'],
+    ['--series-6', 'Serie 6', 'var(--series-6)', '#2C2460 · stjerne']
+  ]);
 
   var rows = [
     ['--text-xs', '12 px', 'Meta, etiketter i tiles'], ['--text-sm', '14 px', 'Applikationens base'],
@@ -212,7 +223,7 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
     </div>
   </div>
 </header>` },
-    { t: 'Knapper', n: 'Primær er flad #446EA8. Højst én primær pr. område. Alle knapper er mindst 44 px høje, også i tabeller (D21).', h:
+    { t: 'Knapper', n: 'Primær er flad #446EA8. Højst én primær pr. område. Alle knapper er mindst 44 px høje, også i tabeller (D21). En datatæt app kan sætte <code>u-pointer-aware</code> på <code>body</code>: så er målet 36 px med mus og 44 px med finger (D25).', h:
 `<button class="u-btn u-btn--primary" type="button">Gem ændringer</button>
 <button class="u-btn u-btn--secondary" type="button">Annuller</button>
 <button class="u-btn u-btn--danger" type="button">Slet</button>

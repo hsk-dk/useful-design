@@ -86,6 +86,51 @@ for (const [fg, bg, min, label] of checks) {
 	console.log(`${ok ? 'PASS' : 'FAIL'}  ${r.toFixed(2).padStart(5)} (min ${min})  ${label}  [--${fg} on --${bg}]`);
 }
 
+// ---- Series colours (D23) ------------------------------------------------------------------------------------------------
+// More than four series need more than hue: lightness spread, and a distance that holds for every kind of colour vision.
+const series = [1, 2, 3, 4, 5, 6].map((i) => v(`series-${i}`));
+const M = {
+	normal: [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+	protan: [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]],
+	deutan: [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]],
+	tritan: [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.3039]],
+};
+const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+function lab(hex, kind) {
+	const l = [1, 3, 5].map((i) => lin(parseInt(hex.slice(i, i + 2), 16) / 255));
+	const [R, G, B] = M[kind].map((r) => Math.min(1, Math.max(0, r[0] * l[0] + r[1] * l[1] + r[2] * l[2])));
+	let X = 0.4124564 * R + 0.3575761 * G + 0.1804375 * B;
+	const Y = 0.2126729 * R + 0.7151522 * G + 0.072175 * B;
+	let Z = 0.0193339 * R + 0.119192 * G + 0.9503041 * B;
+	const f = (x) => (x > 216 / 24389 ? Math.cbrt(x) : ((24389 / 27) * x + 16) / 116);
+	X /= 0.95047; Z /= 1.08883;
+	return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))];
+}
+const dE = (a, b, k) => Math.hypot(...lab(a, k).map((x, i) => x - lab(b, k)[i]));
+const L = (h) => lab(h, 'normal')[0];
+const seriesRows = [];
+series.forEach((c, i) => seriesRows.push([`series-${i + 1}`, 'surface', UI, `Series ${i + 1} as a graphic`]));
+for (const [fg, bg, min, label] of seriesRows) {
+	const r = ratio(v(fg), v(bg));
+	const ok = r >= min;
+	if (!ok) failed++;
+	console.log(`${ok ? 'PASS' : 'FAIL'}  ${r.toFixed(2).padStart(5)} (min ${min})  ${label}  [--${fg} on --${bg}]`);
+}
+function rule(ok, text, detail) {
+	if (!ok) failed++;
+	console.log(`${ok ? 'PASS' : 'FAIL'}  ${text}${detail ? '  ' + detail : ''}`);
+}
+let worst = Infinity;
+for (let i = 0; i < series.length; i++) for (let j = i + 1; j < series.length; j++) for (const k of Object.keys(M)) worst = Math.min(worst, dE(series[i], series[j], k));
+rule(worst >= 30, 'Series: every pair is delta E 30 or more for normal, protan, deutan and tritan vision', `(worst ${worst.toFixed(0)})`);
+const firstThree = [L(series[0]), L(series[1]), L(series[2])].sort((a, b) => a - b);
+rule(firstThree[1] - firstThree[0] >= 14 && firstThree[2] - firstThree[1] >= 14, 'Series: the first three differ by 14 L* or more', `(${firstThree.map((x) => x.toFixed(0)).join(' / ')})`);
+let nb = Infinity;
+for (let i = 0; i + 1 < series.length; i++) nb = Math.min(nb, Math.abs(L(series[i]) - L(series[i + 1])));
+rule(nb >= 8, 'Series: neighbours differ by 8 L* or more', `(smallest ${nb.toFixed(0)})`);
+const fine = css.match(/--target-size-fine:\s*([0-9.]+)rem/);
+rule(!!fine && parseFloat(fine[1]) * 16 >= 24, 'Pointer-aware target is at least 24px (WCAG 2.5.8)', fine ? `(${parseFloat(fine[1]) * 16}px)` : '(missing)');
+
 // Pairings that must NOT be used for text. Documented so nobody "fixes" them back.
 const known = [
 	['action', 'surface', '--color-action (#6ba3ff) as text or a lone outline'],

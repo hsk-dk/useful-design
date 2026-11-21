@@ -2,7 +2,7 @@
 
 Fælles designsystem for Useful-apps: **tokens**, **framework-neutrale CSS-komponenter** og **stilguiden**. Formålet er, at Running, Homelab-portalen, SparkSpend og clean.useful.dk ser ud og opfører sig som samme familie, uden at de skal bruge den samme teknologi.
 
-> Status: **udkast 0.3.0.** Beslutningerne er truffet ud fra en gennemgang af de fire apps (se `docs/decisions.md`). Running og homelab-portalen bruger pakken (som npm-afhængighed fra et tag, låst med hash). SparkSpend og clean.useful.dk mangler.
+> Status: **udkast 0.4.0.** Beslutningerne er truffet ud fra en gennemgang af de fire apps (se `docs/decisions.md`). Running og homelab-portalen bruger pakken (som npm-afhængighed fra et tag, låst med hash). SparkSpend og clean.useful.dk mangler.
 
 ## Hvad der er her
 
@@ -11,7 +11,8 @@ Fælles designsystem for Useful-apps: **tokens**, **framework-neutrale CSS-kompo
 | `dist/useful.css` | **Den fil, apps tager i brug.** Tokens, basisstil og komponenter i én fil med versionsbanner. Genereres, redigér den ikke. |
 | `src/` | Kilden: `tokens.css`, `base.css`, `components.css`. |
 | `docs/index.html` | Stilguiden med levende eksempler og kopierbar HTML. |
-| `docs/decisions.md` | De 22 designbeslutninger med begrundelse og konsekvens for hver app. |
+| `docs/decisions.md` | De 26 designbeslutninger med begrundelse og konsekvens for hver app. |
+| `docs/charts.md` | Diagrammer: seriefarver og markører, domænefarver mod årsserier, tekstalternativ med kode, spring-til-indhold. |
 | `docs/migration.md` | Tjekliste pr. app. |
 | `docs/k5-forslag.md` | Forslag til ny konvention K5 i dashboardets `platform-conventions.md`. |
 | `scripts/` | `build.mjs` (samler filen), `check-contrast.mjs` (WCAG 2.2 AA), `check-version.mjs` (er en app bagud?). |

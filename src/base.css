@@ -75,6 +75,12 @@
 }
 .u-skip-link:focus { transform: none; }
 
+/* Pointer-aware targets (D25), opt-in. Put the class on <body> or a container: every .u-btn, .u-tab and field inside is 36px
+   for a mouse and 44px for a finger. Without the class nothing changes (D21: 44px). The rule redefines --target-size, which
+   the components already use. pointer: coarse is the PRIMARY pointer, so a touch laptop with a mouse gets 36px. */
+.u-pointer-aware { --target-size: var(--target-size-fine); }
+@media (pointer: coarse) { .u-pointer-aware { --target-size: 2.75rem; } }
+
 /* Layout helpers */
 .u-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
 .u-stack { display: flex; flex-direction: column; gap: var(--space-3); }
