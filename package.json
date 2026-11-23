@@ -1,6 +1,6 @@
 {
   "name": "useful-design",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "Useful design system: tokens, framework-neutral CSS components and the style guide",
   "type": "module",
