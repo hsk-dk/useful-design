@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
+
+- Ny valgfri modifikator `u-card--spotlight` (D27): et blødt lys følger markøren over kortet. Kun pynt, kun med `hover: hover`. Eksempel i README.
+- README og `docs/migration.md` har den faktiske status for Running, SparkSpend og portalen.
+
 ## 0.4.0
 
 Ny mindre version, fra SparkSpends overgang til pakken. Ingen brydende ændringer: alt nyt er tilføjet, og ingen app ændrer sig uden at vælge det.

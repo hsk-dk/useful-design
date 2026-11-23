@@ -4,6 +4,8 @@ En app er migreret, når den bruger `useful.css` (eller tokens) uden enkeltståe
 
 ## Running (React, `frontend/src`)
 
+*Status: pakken er i brug, men fastlåst på v0.2.0 (nu: v0.4.0). Mange indlejrede farver i `src/pages` er flyttet til tokens; canvas og SVG-plakater (`FlightMap`, `ShareCard`, `AreaPosters`, `YearPlayback`, `ContactSheet`) har stadig hex, fordi de ikke kan læse CSS-variabler direkte. Afkryds nedenfor kun det, der er kontrolleret i appen.*
+
 - [ ] Kopiér `dist/useful.css` ind, importér den i `main.tsx` og sæt klassen `u-page` på `body`. Peg `--u-background-image` på en lokal fil.
 - [ ] Flyt de indlejrede farver i `App.tsx`, `AdminPage.tsx`, `OverviewPage.tsx`, `ActivitiesPage.tsx`, `PlanPage.tsx` og `AiSuggestionsPage.tsx` til tokens.
 - [ ] Topbjælke: gradienten `#5D8FD9 → #6EA0EB` → `--header-gradient` (`.u-header`).
@@ -17,6 +19,8 @@ En app er migreret, når den bruger `useful.css` (eller tokens) uden enkeltståe
 - [ ] Alle knapper mindst 44 px (D21): ingen knapper på 11 til 13 px.
 
 ## SparkSpend (PHP, Bootstrap 5.3, `includes/style.css`)
+
+*Gjort 2026-11-21 (v0.4.0): trin 1 til 8 i SparkSpends `BACKLOG.md`. Tjeklisten nedenfor er den oprindelige; afkryds kun efter at have kontrolleret mod appen.*
 
 - [ ] Header: `--brand-dark` `#1A2635` → `--header-gradient`.
 - [ ] `.btn-primary`: flad `#6BA3FF` med hvid tekst (2,53 til 1) → `#446EA8`.
