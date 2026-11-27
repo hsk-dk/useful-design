@@ -118,6 +118,24 @@
 	--series-5: #7c14f3;
 	--series-6: #2c2460;
 
+	/* Heat scale (draft, D28): five steps for a matrix or calendar where a cell's value is a count or a share,
+	 * e.g. "how many can attend this time". One hue (blue), stepped in lightness: neighbours differ by 9 L* or more, so the
+	 * order survives greyscale. Every cell must show its value as text (D11, D26); the text colour is paired per step and
+	 * passes 4.5:1 on its own fill. Step 1 is 1.14:1 on white: it needs the cell border (--heat-border) to be seen.
+	 * "No value" (null) is not step 0: use --heat-none with a hatch (D26), never the lowest step. */
+	--heat-1: #eaf1fb;
+	--heat-2: #c3d7f1;
+	--heat-3: #8fb0de;
+	--heat-4: #446ea8;
+	--heat-5: #2b4a78;
+	--heat-on-1: #243140;
+	--heat-on-2: #243140;
+	--heat-on-3: #243140;
+	--heat-on-4: #ffffff;
+	--heat-on-5: #ffffff;
+	--heat-border: #6b7a8c; /* cell outline: 3:1 or better on white and on step 1 */
+	--heat-none: #d9dee5; /* same as --data-muted: the hatch base for "no value" */
+
 	/* Radii (approved) */
 	--radius-small: 6px; /* buttons, small elements */
 	--radius-medium: 8px; /* fields, tiles */

@@ -208,3 +208,24 @@
 	.u-header__nav { gap: var(--space-3); }
 	.u-panel { padding: var(--space-4); }
 }
+
+/* Heat cell (D28): a matrix cell with a count or share. Always put the value in the cell as text. */
+.u-heat {
+	display: inline-flex; align-items: center; justify-content: center;
+	min-width: var(--target-size); min-height: var(--target-size); padding: 0 var(--space-2);
+	font-size: var(--text-sm); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums;
+	color: var(--heat-on-1); background: var(--heat-1);
+	border: 1px solid var(--heat-border); border-radius: var(--radius-small);
+}
+.u-heat--1 { color: var(--heat-on-1); background: var(--heat-1); }
+.u-heat--2 { color: var(--heat-on-2); background: var(--heat-2); }
+.u-heat--3 { color: var(--heat-on-3); background: var(--heat-3); }
+.u-heat--4 { color: var(--heat-on-4); background: var(--heat-4); }
+.u-heat--5 { color: var(--heat-on-5); background: var(--heat-5); }
+/* No value: hatched, so it never reads as the lowest step or as zero (D26). */
+.u-heat--none {
+	color: var(--color-text-muted);
+	background: repeating-linear-gradient(135deg, var(--heat-none) 0 4px, var(--color-surface) 4px 8px);
+}
+.u-pointer-aware .u-heat { min-width: var(--target-size-fine); min-height: var(--target-size-fine); }
+@media (pointer: coarse) { .u-pointer-aware .u-heat { min-width: var(--target-size); min-height: var(--target-size); } }

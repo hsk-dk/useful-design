@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 (udkast)
+
+Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
+
+- Nye tokens `--heat-1` til `--heat-5`, `--heat-on-1` til `--heat-on-5`, `--heat-border` og `--heat-none` (D28): varmeskala til matricer og kalendere.
+- Nye klasser `u-heat`, `u-heat--1…5` og `u-heat--none` (skraveret "ingen værdi"). Størrelsen følger `u-pointer-aware` (D25).
+- Kontrastkontrollen tester tekst på hvert trin, kanten, lysstyrketrin og farveblinde-afstand.
+- Ny beslutning D28 og et afsnit om varmeskala i `docs/charts.md`.
+
 ## 0.5.0
 
 Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.

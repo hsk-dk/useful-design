@@ -131,6 +131,22 @@ rule(nb >= 8, 'Series: neighbours differ by 8 L* or more', `(smallest ${nb.toFix
 const fine = css.match(/--target-size-fine:\s*([0-9.]+)rem/);
 rule(!!fine && parseFloat(fine[1]) * 16 >= 24, 'Pointer-aware target is at least 24px (WCAG 2.5.8)', fine ? `(${parseFloat(fine[1]) * 16}px)` : '(missing)');
 
+// ---- Heat scale (D28) ------------------------------------------------------------------------------------------------------
+for (let i = 1; i <= 5; i++) {
+	const r = ratio(v(`heat-on-${i}`), v(`heat-${i}`));
+	rule(r >= TEXT, `Heat step ${i}: value text on its fill`, `(${r.toFixed(2)}, min ${TEXT})`);
+}
+for (const bg of ['surface', 'heat-1']) {
+	const r = ratio(v('heat-border'), v(bg));
+	rule(r >= UI, `Heat cell border on ${bg}`, `(${r.toFixed(2)}, min ${UI})`);
+}
+let heatNb = Infinity;
+for (let i = 1; i < 5; i++) heatNb = Math.min(heatNb, L(v(`heat-${i}`)) - L(v(`heat-${i + 1}`)));
+rule(heatNb >= 9, 'Heat: each step is at least 9 L* darker than the one before (order survives greyscale)', `(smallest ${heatNb.toFixed(1)})`);
+let heatDe = Infinity;
+for (let i = 1; i < 5; i++) for (const k of Object.keys(M)) heatDe = Math.min(heatDe, dE(v(`heat-${i}`), v(`heat-${i + 1}`), k));
+rule(heatDe >= 10, 'Heat: neighbouring steps are delta E 10 or more for every kind of colour vision', `(smallest ${heatDe.toFixed(0)})`);
+
 // Pairings that must NOT be used for text. Documented so nobody "fixes" them back.
 const known = [
 	['action', 'surface', '--color-action (#6ba3ff) as text or a lone outline'],

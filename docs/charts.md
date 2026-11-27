@@ -66,3 +66,21 @@ Diagrammer, der er en div fuld af SVG (fx ApexCharts), læses brik for brik. Sæ
 - `u-skip-link` er første stop i tabrækkefølgen. Flytter appen siden i `#hash` (en router), så fang klikket og sæt fokus på `<main tabindex="-1">` uden at ændre adressen.
 - Ét skjult `h2` (`u-visually-hidden`) pr. visning og kortenes titler som `h3`, så rækkefølgen er h1, h2, h3.
 - Navngiv menuer (`aria-label`), markér valgt side med `aria-current="page"` og knapper, der slår en visning eller serie til og fra, med `aria-pressed`.
+
+## Varmeskala i matricer og kalendere (D28)
+
+Brug `--heat-1…5` (`u-heat--1…5`), når hvert felt har en værdi, der kan trappes, fx antal der kan deltage på et tidspunkt. Brug dem ikke til status (D11) eller til serier (D23).
+
+- **Værdien står i feltet som tekst** (`7/9` eller `78 %`). Farven støtter, men bærer aldrig tallet alene.
+- **Del værdien i fem lige store intervaller** af det mulige, ikke af det højeste, der tilfældigvis findes. Sæt trin 5 til "alle kan", så fuld deltagelse altid er det mørkeste felt. Vis forklaringen (trin og interval) ved matrixen.
+- **"Ingen værdi" er `u-heat--none`** (skraveret), aldrig trin 1 og aldrig 0 (D26). Et ikke-besvaret tidspunkt er ikke det samme som et "nej".
+- Felterne er `u-heat`, har kant og er mindst 44 px (36 px med `u-pointer-aware` og mus). Klikbare felter er `<button>`, og matrixen er en `<table>` med `<th scope>` for række og kolonne.
+- Matrixen har et tekstalternativ og kan vises som liste (D26).
+
+```html
+<table>
+  <caption>Hvor mange kan, pr. tidspunkt</caption>
+  <thead><tr><th scope="col">Tirsdag 8. dec. 09:00</th></tr></thead>
+  <tbody><tr><td><span class="u-heat u-heat--4">7/9</span></td></tr></tbody>
+</table>
+```
