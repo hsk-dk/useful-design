@@ -75,6 +75,15 @@ const checks = [
 	['focus-outline', 'surface', UI, 'Focus outline on card'],
 	['focus-outline', 'surface-muted', UI, 'Focus outline on muted surface'],
 	['focus-outline', 'background', UI, 'Focus outline on page background'],
+	['on-night', 'night', TEXT, 'Night header, hero and footer text (D31)'],
+	['on-night-muted', 'night', TEXT, 'Muted text on night (D31)'],
+	['night', 'surface', TEXT, 'Hero primary button: night text on white (D31)'],
+	['night', 'paper', TEXT, 'Hero primary button hover: night text on paper (D31)'],
+	['text', 'paper', TEXT, 'Body text on the paper page (D31)'],
+	['text-muted', 'paper', TEXT, 'Muted text on the paper page (D31)'],
+	['action-strong', 'paper', TEXT, 'Links on the paper page (D31)'],
+	['on-night', '#1e3a64', TEXT, 'Feature card text at the dark end (D31)'],
+	['on-night', '#446ea8', TEXT, 'Feature card text at the light end (D31)'],
 	['border-control', 'surface', 1.2, 'Control border (decorative; the field has a label and a focus state)'],
 ];
 

@@ -58,6 +58,69 @@
 .u-header--light .u-header__brand { color: var(--color-text); }
 .u-header--light .u-header__link { color: var(--color-action-strong); }
 .u-header--light .u-header__link:hover { color: var(--color-action-hover); border-bottom-color: var(--color-action-strong); }
+
+/* ---- Useful brand surface (draft, D31): the look of useful.dk for apps that want it ------------------------------------------ */
+
+/* Night header: the solid night blue of useful.dk's top bar. Same text and focus rules as the default header. */
+.u-header--night { background: var(--color-night); }
+
+/* Wordmark: the small frame mark and USEFUL in spaced capitals, as on useful.dk. Put the app name after it in
+ * u-wordmark__app. On a light surface add u-wordmark--ink. The mark is decoration: give the link an accessible name. */
+.u-wordmark { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--target-size); color: var(--color-on-night); text-decoration: none; }
+.u-wordmark__mark { position: relative; display: block; flex: none; width: 22px; height: 16px; border: 2px solid currentcolor; opacity: 0.9; }
+.u-wordmark__mark::after { content: ''; position: absolute; inset: 0; background: linear-gradient(155deg, transparent 46%, currentcolor 46% 54%, transparent 54%); }
+.u-wordmark__name { font-size: var(--text-md); font-weight: var(--weight-extrabold); letter-spacing: 0.06em; text-transform: uppercase; }
+.u-wordmark__app { padding-left: var(--space-3); border-left: 1px solid rgba(255, 255, 255, 0.4); font-size: var(--text-lg); font-weight: var(--weight-extrabold); letter-spacing: var(--letter-spacing-heading); }
+.u-wordmark--ink { color: var(--color-text); }
+.u-wordmark--ink .u-wordmark__app { border-left-color: var(--color-border-control); }
+.u-wordmark:focus-visible { outline: 2px solid currentcolor; outline-offset: 2px; }
+
+/* Page on paper: the light ground of useful.dk below the hero, instead of the photo. Combine with u-page. */
+.u-page--paper { background-color: var(--color-paper); }
+.u-page--paper::before, .u-page--paper::after { content: none; }
+
+/* Hero: night overlay and blueprint grid on top of the app's photo, white text. One per page, at the top. */
+.u-hero {
+	position: relative; isolation: isolate; overflow: hidden;
+	color: var(--color-on-night); background: var(--color-night);
+}
+.u-hero::before {
+	content: ''; position: absolute; inset: 0; z-index: -2;
+	background: var(--hero-overlay), var(--u-background-image, none) center 78% / cover no-repeat;
+}
+.u-hero::after {
+	content: ''; position: absolute; inset: 0; z-index: -1;
+	background-image: linear-gradient(var(--blueprint-line) 1px, transparent 1px), linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+	background-size: 48px 48px;
+	-webkit-mask-image: linear-gradient(#000 30%, transparent 95%);
+	mask-image: linear-gradient(#000 30%, transparent 95%);
+	pointer-events: none;
+}
+.u-hero__inner { max-width: var(--content-width); margin: 0 auto; padding: var(--space-8) var(--space-4) var(--space-8); }
+.u-hero__eyebrow { margin: 0 0 var(--space-3); font-family: var(--font-family-mono); font-size: var(--text-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-night-muted); }
+.u-hero__title { margin: 0; font-size: clamp(var(--text-2xl), 5vw, 3.2rem); font-weight: var(--weight-extrabold); line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance; }
+.u-hero__lead { max-width: 40rem; margin: var(--space-4) 0 0; font-size: var(--text-md); color: var(--color-on-night-muted); }
+.u-hero .u-btn--primary { color: var(--color-night); background: var(--color-surface); }
+.u-hero .u-btn--primary:hover { background: var(--color-paper); }
+.u-hero .u-btn:focus-visible { outline-color: var(--color-on-night); box-shadow: none; }
+
+/* Brand card: the larger radius and soft lift of the useful.dk project cards. u-card--feature is the blue one; at most one
+ * per page, white text only. */
+.u-card--brand { border-radius: var(--radius-xl); box-shadow: var(--shadow-lift); padding: var(--space-5); }
+.u-card--feature { color: var(--color-on-night); background: var(--feature-gradient); border: 0; }
+.u-card--feature .u-card__title { color: var(--color-on-night); }
+
+/* Footer: night blue with the wordmark and tagline, as on useful.dk. */
+.u-footer { margin-top: var(--space-8); color: var(--color-on-night-muted); background: var(--color-night); font-size: var(--text-sm); }
+.u-footer__inner {
+	display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
+	max-width: var(--content-width-wide); margin: 0 auto; padding: var(--space-7) var(--space-4);
+}
+.u-footer__tagline { display: block; margin-top: var(--space-1); font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+.u-footer__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.u-footer__link { display: inline-flex; align-items: center; min-height: var(--target-size); color: var(--color-on-night); }
+.u-footer__link:hover { color: var(--color-on-night-muted); }
+.u-footer__link:focus-visible, .u-footer .u-wordmark:focus-visible { outline: 2px solid var(--color-on-night); outline-offset: 2px; }
 .u-header--light .u-header__link[aria-current='page'] { color: var(--color-text); border-bottom-color: var(--color-action-strong); }
 .u-header--light .u-btn:focus-visible,
 .u-header--light .u-header__link:focus-visible { outline-color: var(--color-focus-outline); box-shadow: var(--focus-ring); }
