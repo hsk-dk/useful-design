@@ -64,6 +64,17 @@
 	--header-gradient: linear-gradient(to right, #3a5f90, #446ea8);
 	--color-on-header: #ffffff;
 
+	/* Useful brand surface (draft, D31): the night blue, paper and overlay of useful.dk, so an app can carry the same look.
+	 * White text on night is 15.2:1; --color-on-night-muted is 9.8:1 (the landing page's 78 % white).
+	 * The overlay lets the photo through at 4 % to 8 % so hero text never depends on it: its lightest stop is 0.92 over rgb(42, 70, 112): muted text there is 4.89:1 even over pure white. */
+	--color-night: #16263f;
+	--color-on-night: #ffffff;
+	--color-on-night-muted: #cbd0d7;
+	--color-paper: #eef1f6; /* page ground under cards, instead of the photo */
+	--hero-overlay: linear-gradient(180deg, rgba(22, 38, 63, 0.96) 0%, rgba(30, 56, 96, 0.92) 55%, rgba(42, 70, 112, 0.92) 100%);
+	--blueprint-line: rgba(157, 192, 255, 0.12);
+	--feature-gradient: linear-gradient(135deg, #1e3a64, #446ea8); /* white text: 5.2:1 at the light end */
+
 	/* Status fills and their on-colours (approved). Status always has text and a shape too. */
 	--color-success: #10b981;
 	--color-on-success: #243140;
@@ -118,15 +129,35 @@
 	--series-5: #7c14f3;
 	--series-6: #2c2460;
 
+	/* Heat scale (draft, D28): five steps for a matrix or calendar where a cell's value is a count or a share,
+	 * e.g. "how many can attend this time". One hue (blue), stepped in lightness: neighbours differ by 9 L* or more, so the
+	 * order survives greyscale. Every cell must show its value as text (D11, D26); the text colour is paired per step and
+	 * passes 4.5:1 on its own fill. Step 1 is 1.14:1 on white: it needs the cell border (--heat-border) to be seen.
+	 * "No value" (null) is not step 0: use --heat-none with a hatch (D26), never the lowest step. */
+	--heat-1: #eaf1fb;
+	--heat-2: #c3d7f1;
+	--heat-3: #8fb0de;
+	--heat-4: #446ea8;
+	--heat-5: #2b4a78;
+	--heat-on-1: #243140;
+	--heat-on-2: #243140;
+	--heat-on-3: #243140;
+	--heat-on-4: #ffffff;
+	--heat-on-5: #ffffff;
+	--heat-border: #6b7a8c; /* cell outline: 3:1 or better on white and on step 1 */
+	--heat-none: #d9dee5; /* same as --data-muted: the hatch base for "no value" */
+
 	/* Radii (approved) */
 	--radius-small: 6px; /* buttons, small elements */
 	--radius-medium: 8px; /* fields, tiles */
 	--radius-large: 14px; /* cards, panels */
+	--radius-xl: 22px; /* brand surfaces: u-card--brand and the feature card (draft, D31) */
 
 	/* Shadows. --shadow-card is for static cards, --shadow-small/-medium signal "you can click this". */
 	--shadow-card: 0 1px 2px rgba(36, 49, 64, 0.06);
 	--shadow-small: 0 6px 16px rgba(0, 0, 0, 0.18);
 	--shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.2);
+	--shadow-lift: 0 1px 2px rgba(36, 49, 64, 0.04), 0 12px 32px -18px rgba(36, 49, 64, 0.25); /* brand cards (D31) */
 
 	/* Spacing: 8px-based (approved) */
 	--space-1: 4px;

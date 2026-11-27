@@ -223,6 +223,16 @@ th { font-size: var(--text-xs); letter-spacing: 0.07em; text-transform: uppercas
     </div>
   </div>
 </header>` },
+    { t: 'Hvid appheader', n: 'Til login og offentlige sider (D1, D29), fx et delt link. Samme opbygning som den blå header, med klassen u-header--light. Brug assets/useful-logo.svg som logo. Kan ikke kombineres med bundtabbar.', demo: 'bare', wide: true, h:
+`<header class="u-header u-header--light">
+  <div class="u-header__inner">
+    <a class="u-header__brand" href="/">Mødeplan</a>
+    <nav class="u-header__nav" aria-label="Mødet">
+      <a class="u-header__link" href="#svar" aria-current="page">Svar</a>
+      <a class="u-header__link" href="#resultat">Resultat</a>
+    </nav>
+  </div>
+</header>` },
     { t: 'Knapper', n: 'Primær er flad #446EA8. Højst én primær pr. område. Alle knapper er mindst 44 px høje, også i tabeller (D21). En datatæt app kan sætte <code>u-pointer-aware</code> på <code>body</code>: så er målet 36 px med mus og 44 px med finger (D25).', h:
 `<button class="u-btn u-btn--primary" type="button">Gem ændringer</button>
 <button class="u-btn u-btn--secondary" type="button">Annuller</button>

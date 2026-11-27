@@ -48,6 +48,8 @@ const checks = [
 	['on-action', 'action-hover', TEXT, 'Button text on primary hover'],
 	['on-header', 'header-start', TEXT, 'Header text on gradient start'],
 	['on-header', 'header-end', TEXT, 'Header text on gradient end'],
+	['text', 'surface', TEXT, 'Light header brand and current page on white (u-header--light)'],
+	['action-hover', 'surface', TEXT, 'Light header link hover on white (u-header--light)'],
 	['on-success', 'success', TEXT, 'Text on success fill'],
 	['on-warning', 'warning', TEXT, 'Text on warning fill'],
 	['on-error', 'error', TEXT, 'Text on error fill'],
@@ -73,6 +75,15 @@ const checks = [
 	['focus-outline', 'surface', UI, 'Focus outline on card'],
 	['focus-outline', 'surface-muted', UI, 'Focus outline on muted surface'],
 	['focus-outline', 'background', UI, 'Focus outline on page background'],
+	['on-night', 'night', TEXT, 'Night header, hero and footer text (D31)'],
+	['on-night-muted', 'night', TEXT, 'Muted text on night (D31)'],
+	['night', 'surface', TEXT, 'Hero primary button: night text on white (D31)'],
+	['night', 'paper', TEXT, 'Hero primary button hover: night text on paper (D31)'],
+	['text', 'paper', TEXT, 'Body text on the paper page (D31)'],
+	['text-muted', 'paper', TEXT, 'Muted text on the paper page (D31)'],
+	['action-strong', 'paper', TEXT, 'Links on the paper page (D31)'],
+	['on-night', '#1e3a64', TEXT, 'Feature card text at the dark end (D31)'],
+	['on-night', '#446ea8', TEXT, 'Feature card text at the light end (D31)'],
 	['border-control', 'surface', 1.2, 'Control border (decorative; the field has a label and a focus state)'],
 ];
 
@@ -130,6 +141,22 @@ for (let i = 0; i + 1 < series.length; i++) nb = Math.min(nb, Math.abs(L(series[
 rule(nb >= 8, 'Series: neighbours differ by 8 L* or more', `(smallest ${nb.toFixed(0)})`);
 const fine = css.match(/--target-size-fine:\s*([0-9.]+)rem/);
 rule(!!fine && parseFloat(fine[1]) * 16 >= 24, 'Pointer-aware target is at least 24px (WCAG 2.5.8)', fine ? `(${parseFloat(fine[1]) * 16}px)` : '(missing)');
+
+// ---- Heat scale (D28) ------------------------------------------------------------------------------------------------------
+for (let i = 1; i <= 5; i++) {
+	const r = ratio(v(`heat-on-${i}`), v(`heat-${i}`));
+	rule(r >= TEXT, `Heat step ${i}: value text on its fill`, `(${r.toFixed(2)}, min ${TEXT})`);
+}
+for (const bg of ['surface', 'heat-1']) {
+	const r = ratio(v('heat-border'), v(bg));
+	rule(r >= UI, `Heat cell border on ${bg}`, `(${r.toFixed(2)}, min ${UI})`);
+}
+let heatNb = Infinity;
+for (let i = 1; i < 5; i++) heatNb = Math.min(heatNb, L(v(`heat-${i}`)) - L(v(`heat-${i + 1}`)));
+rule(heatNb >= 9, 'Heat: each step is at least 9 L* darker than the one before (order survives greyscale)', `(smallest ${heatNb.toFixed(1)})`);
+let heatDe = Infinity;
+for (let i = 1; i < 5; i++) for (const k of Object.keys(M)) heatDe = Math.min(heatDe, dE(v(`heat-${i}`), v(`heat-${i + 1}`), k));
+rule(heatDe >= 10, 'Heat: neighbouring steps are delta E 10 or more for every kind of colour vision', `(smallest ${heatDe.toFixed(0)})`);
 
 // Pairings that must NOT be used for text. Documented so nobody "fixes" them back.
 const known = [
