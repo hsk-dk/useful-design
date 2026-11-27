@@ -5,6 +5,7 @@
 Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
 
 - Nye tokens `--heat-1` til `--heat-5`, `--heat-on-1` til `--heat-on-5`, `--heat-border` og `--heat-none` (D28): varmeskala til matricer og kalendere.
+- Ny modifikator `u-header--light` (D29): hvid appheader til login og offentlige sider (D1). Bruger kun eksisterende tokens; to nye kontrolpunkter i kontrastkontrollen.
 - Nye klasser `u-heat`, `u-heat--1…5` og `u-heat--none` (skraveret "ingen værdi"). Størrelsen følger `u-pointer-aware` (D25).
 - Kontrastkontrollen tester tekst på hvert trin, kanten, lysstyrketrin og farveblinde-afstand.
 - Ny beslutning D28 og et afsnit om varmeskala i `docs/charts.md`.

@@ -48,6 +48,8 @@ const checks = [
 	['on-action', 'action-hover', TEXT, 'Button text on primary hover'],
 	['on-header', 'header-start', TEXT, 'Header text on gradient start'],
 	['on-header', 'header-end', TEXT, 'Header text on gradient end'],
+	['text', 'surface', TEXT, 'Light header brand and current page on white (u-header--light)'],
+	['action-hover', 'surface', TEXT, 'Light header link hover on white (u-header--light)'],
 	['on-success', 'success', TEXT, 'Text on success fill'],
 	['on-warning', 'warning', TEXT, 'Text on warning fill'],
 	['on-error', 'error', TEXT, 'Text on error fill'],

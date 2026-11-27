@@ -52,6 +52,16 @@
 .u-header__link[aria-current='page'] { font-weight: var(--weight-bold); border-bottom-color: var(--color-on-header); }
 .u-header__actions { display: flex; align-items: center; gap: var(--space-2); flex: none; }
 
+/* Light header (D29): for login and public pages (D1), e.g. the link a participant opens. White surface, dark text.
+ * Text 13.22:1, links and current-page underline 5.20:1 on white. Do not combine with u-header__nav--tabbar. */
+.u-header--light { background: var(--color-surface); color: var(--color-text); border-bottom: 1px solid var(--color-border-control); }
+.u-header--light .u-header__brand { color: var(--color-text); }
+.u-header--light .u-header__link { color: var(--color-action-strong); }
+.u-header--light .u-header__link:hover { color: var(--color-action-hover); border-bottom-color: var(--color-action-strong); }
+.u-header--light .u-header__link[aria-current='page'] { color: var(--color-text); border-bottom-color: var(--color-action-strong); }
+.u-header--light .u-btn:focus-visible,
+.u-header--light .u-header__link:focus-visible { outline-color: var(--color-focus-outline); box-shadow: var(--focus-ring); }
+
 /* ---- Tabs inside a page (filled; the header uses underlined links) ------- */
 .u-tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 .u-tab {
