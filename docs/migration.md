@@ -30,6 +30,17 @@ En app er migreret, når den bruger `useful.css` (eller tokens) uden enkeltståe
 - [ ] Trendgrafer (Chart.js): `#6BA3FF` → `--data-fill` til søjler, `--data-1` til tekst.
 - [ ] `prefers-reduced-motion` findes allerede. Behold.
 
+## Alle apps: brandlaget (D31, v0.7.0)
+
+- [ ] Header: `u-header` → `u-header u-header--night`, og brand-linket bliver et `u-wordmark` med `u-wordmark__mark`, `u-wordmark__name` (USEFUL) og `u-wordmark__app` (appnavnet).
+- [ ] Footer: `u-footer` med ordmærket, taglinen og et link til useful.dk.
+- [ ] Kroppen beholdes: foto, `u-panel` og `u-card`. `u-hero` kun på en forside.
+- [ ] Overlap: gjort 2026-11-27.
+
+## Overlap (SvelteKit)
+
+*Gjort 2026-11-27 (v0.7.0): bruger kun tokens og `u-`-klasser, med natblå header, ordmærke, footer og hero på startsiden. Fastlåst med version og checksum i `package.json`.*
+
 ## Alle apps: tekststørrelse
 
 - [ ] `.u-page` sætter 14 px og linjehøjde 1,6 på `body` (D10). Det ændrer en apps eksisterende tekst. Tjek siderne bagefter, eller sæt `font-size` og `line-height` på `.u-page` midlertidigt, mens komponenterne flyttes over.

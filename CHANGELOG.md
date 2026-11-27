@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.0 (udkast)
+
+Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
+
+- Ny beslutning D31: fælles brandlag fra useful.dk.
+- Nye tokens `--color-night`, `--color-on-night`, `--color-on-night-muted`, `--color-paper`, `--hero-overlay`, `--blueprint-line`, `--feature-gradient`, `--radius-xl` og `--shadow-lift`.
+- Nye klasser `u-header--night`, `u-wordmark` (`__mark`, `__name`, `__app`, `--ink`), `u-hero` (`__inner`, `__eyebrow`, `__title`, `__lead`), `u-footer` (`__inner`, `__tagline`, `__links`, `__link`), `u-page--paper`, `u-card--brand` og `u-card--feature`.
+- Kontrastkontrollen har ni nye parringer for natblå, papirgrå og feature-kortet.
+- Bygger videre på 0.6.0-kladden (D28 til D30), som ikke er tagget endnu.
+
 ## 0.6.0 (udkast)
 
 Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
