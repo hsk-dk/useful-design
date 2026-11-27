@@ -11,7 +11,7 @@ Dette afløser K5 i `hsk-dk/dashboard/docs/platform-conventions.md`. Nuværende 
 | Ikke delt | JavaScript-komponenter i et bestemt framework (Svelte, React, Angular). Hver app vælger sin stak frit. |
 | Uafhængighed | En app **fastlåser en version** af `useful.css` (kopieret ind eller peget på et tag) og opgraderer, når den vil. Aldrig "nyeste" ved kørsel. En fejl i en ny version rammer ingen andre apps. |
 | Ændringer | En ændring af et token kræver, at `scripts/check-contrast.mjs` består, og en post i `CHANGELOG.md`. Brydende ændringer øger hovedversionen. |
-| Sprog | Dansk brugerflade. Kode og teknisk dokumentation må være engelsk. |
+| Sprog | Dansk brugerflade som standard. Dansk og engelsk er tilladt, når målgruppen kræver det (D30). Kode og teknisk dokumentation må være engelsk. |
 | Tilgængelighed | WCAG 2.2 AA, synligt tastaturfokus, `prefers-reduced-motion`, fra 320 px. |
 
 ## Hvorfor ændringen

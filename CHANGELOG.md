@@ -8,6 +8,7 @@ Ny mindre version. Ingen brydende ændringer: alt nyt er valgfrit.
 - Ny modifikator `u-header--light` (D29): hvid appheader til login og offentlige sider (D1). Bruger kun eksisterende tokens; to nye kontrolpunkter i kontrastkontrollen.
 - Nye klasser `u-heat`, `u-heat--1…5` og `u-heat--none` (skraveret "ingen værdi"). Størrelsen følger `u-pointer-aware` (D25).
 - Kontrastkontrollen tester tekst på hvert trin, kanten, lysstyrketrin og farveblinde-afstand.
+- Ny beslutning D30: dansk og engelsk brugerflade er tilladt, når målgruppen kræver det. Dansk er stadig standard (D19). Kun dokumentation, ingen nye tokens eller klasser.
 - Ny beslutning D28 og et afsnit om varmeskala i `docs/charts.md`.
 
 ## 0.5.0
